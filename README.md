@@ -58,5 +58,102 @@ and get the name server ip
 ```console
 :~$ http://www.kloth.net/services/nslookup.php
 ```
+</details>
+
+<details>
+
+ <summary>to trace a email</summary>
+
+* Email tracker pro
+```console
+:~$ Install email tracker pro from the directory of a lab 
+    and copy down the email header you want to track
+```
+
+</details>
 
 
+<details>
+
+ <summary>network footprinting</summary>
+
+* tracert<#windows> traceroute<#linux>(helps in mapping the nw hosts)
+```console
+:~$ tracert www.target.com
+tracert /? (help)
+tracert -h 5 www.target.com
+(-h > number of hopes)
+```
+* traceroute(linux)
+```console
+:~$ traceroute www.targetdomain.com
+(to check ip)whois [ip]
+```
+</details>
+
+<details>
+<summary>recon-ng</summary>
+
+* recon-ng 
+```console
+:~$recon-ng
+   help
+   marketplace install all
+
+  (then to create workspace)
+  workspace create CEH
+  wrokspace list
+  ```
+  * To add the domain to workspaces
+  ```console
+  :~$ (help  for options)
+  db insert domains(take you to the workspace interface)
+  1.certifiedhacker.com
+  2.hit enter
+  show domains
+  ```
+* To search and load modules
+```console
+:~$ modules load brute (to get host related to target domain)
+  modules load (desired modules for brute)
+  run
+  back
+
+  modules load reverse_resolve
+  modules load(desired module)
+  show hosts(shows all hosts which is harvested)
+```
+* then to reporting
+```console
+:~$ modules load reporting
+  modules load reporting/html
+  options list(list options)
+  options set FILENAME
+              CUSTOMERNAME
+              CREATOR
+```
+* then to get the contact of the domain
+```console
+:~$ modules load whois_pocs
+  command info(to see a module interface,to set data)
+  options set SOURCE facebook.com
+  run
+
+```
+* to extract subdomains and IP
+```console
+:~$ module load recon/domains-hosts/hackertarget
+options list
+options set SOURCE certifiedhacker.com
+run
+```
+</details>
+
+<details>
+<summary>recon by AI</summary>
+
+* reconniassance with AI
+```console
+:~$sgpt --chat recon --shell "t organization. To do so, run sgpt --chat footprint --shell "Use theHarvester to gather email accounts associated with 'microsoft.com', limiting results to 200, and leveraging 'baidu' as a data source"
+```
+</details>
