@@ -7,6 +7,10 @@
 ```console
   :~$ site:example.com -inurl:www
 ```
+* sublist3r
+```console
+  :~$ sublist3r -d example.com -o sublist3r_subs.txt
+```
 * some research websites
 ```console
   :~$ netcraft
@@ -157,3 +161,25 @@ run
 :~$sgpt --chat recon --shell "t organization. To do so, run sgpt --chat footprint --shell "Use theHarvester to gather email accounts associated with 'microsoft.com', limiting results to 200, and leveraging 'baidu' as a data source"
 ```
 </details>
+
+<details>
+<summary>BillCipher</summary>
+
+* Use this tool to get passive info of many details of org
+```console
+:~$sudo apt update && sudo apt install ruby python python-pip python3 python3-pip
+sudo apt install httrack whatweb
+git clone https://github.com/GitHackTools/BillCipher
+cd BillCipher
+pip install -r requirements.txt
+pip3 install -r requirements.txt
+python3 billcipher.py
+```
+</details>
+
+
+
+
+# Scanning Networks
+<details>
+<summary></summary>
