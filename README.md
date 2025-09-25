@@ -298,3 +298,67 @@ nmap -A 10.10.1.* (* do all subnet scan)
 * os discovery using nmap script engine(NSE)>>using -O -A NSE
 ```console
 :~$nmap --script smb-os-discovery.nse [ip address]
+```
+</details>
+
+<details>
+<summary>Scan beyond the IDS & firewll</summary>
+
+* By fragmenting the packet
+
+```console
+:~$ nmap -f [ip address]
+-f>>fragment
+
+```
+* Source port manipulation
+```console
+:~$ nmap -g 80 [ip address]
+-g ,--source-port >> source port manipulation
+```
+* MTU(maximum transmission unit)
+```console
+:~$ nmap -mtu 8 [ip adress]
+-mtu>>maximum transmision unit(which is send smaller data packets 8 bytes)
+```
+* Decoy(random ip adress)
+```console
+:~$ nmap -D RND:10 [ip address]
+-D>>decoy
+RND>>random ip count
+```
+* MAC spoofing
+```console
+:~$ nmap -sT -Pn --spoof-mac 0 [ip address]
+-sT>>TCP full scan
+-Pn>>no host discovery
+--spoof-mac 0>>gives legitimate mac address in the network
+```
+</details>
+<details>
+<summary>Scan a target network using metasploit</summary>
+```console
+:~$ open the msfconsole
+nmap -sP -sS -A -oX test [ip/24](subnetmask)
+-oX>>output to xmp file names test
+```
+
+* by metasploit madules
+```console
+:~$ search port scan (shows all module related to port scan)
+use auxilary/scanner/portscan/syn
+show options and set values
+run
+###############################
+same scanned for TCP (same module with tcp at last)
+set target ip(RHOSTS)
+
+#found 445 open port so scanning smb version
+use auxilary/scanner/smb/smb_version 
+set RHOSTS [ip range]
+threads 11
+
+```
+* scanning network using shellgpt
+```console
+:~$ 
