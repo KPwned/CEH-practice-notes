@@ -182,4 +182,119 @@ python3 billcipher.py
 
 # Scanning Networks
 <details>
-<summary></summary>
+<summary>Host discovery</summary>
+
+* Host discovery by
+ARP ping scan
+UDP ping scan
+ICMP ping scan (ICMP ECHO ping, ICMP timestamp, ping ICMP, and address mask ping)
+TCP ping scan (TCP SYN ping and TCP ACK ping)
+IP protocol ping scan
+
+```console
+:~$ nmap -sn -PR [target ip]
+
+-sn>>no port scan
+-PR>>arp ping scan
+```
+* UDP ping scan
+```console
+:~$ nmap -sn -PU [target IP]
+-PU>>UDP scan
+```
+* ICMP echo ping scan
+```console
+:~$ nmap -sn -PE [IP address]
+PE>>ICMP echo ping scan
+```
+* ICMP ping sweep 
+``` console
+:~$ nmap -sn -PE [Range of IP address]
+```
+* ICMP timestamp ping scan
+```console
+:~$ nmap -sn -PP [IP address]
+-PP>>timestamp ping scan
+```
+* Other scanning technique
+```console
+:~$nmap -sn -PM [ip address]
+PM>>ICMP address mask ping scan
+
+#########################################
+nmap -sn -PS [target ip]
+PS>>TCP SYN Ping Scan
+#########################################
+nmap -sn -PA [target ip]
+-PA>>TCP ACK Ping Scan
+########################################
+nmap -sn -PO [ip address]
+-PO>>IP Protocol Ping Scan(sends every protocols and send back the response)
+```
+</details>
+<details>
+
+<summary>Port and service discovery</summary>
+
+* here using zenmap
+```console
+:~$ nmap -sT -v [target ip]
+-sT>>TCP connect/full open scan
+-v>>verbose
+```
+* To scan firewall enabled machine(bypass firewall)
+```console
+:~$nmap -sS -v [ip address]
+-sS>>stealth scan
+```
+* xmass scan (sends urg psh fin)
+```console
+:~$nmap -sX -v [ip address]
+-sX>>xmas scan
+```
+* maimon scan (ack+fin)
+```console
+:~$ nmap -sM -v [ip address]
+-sM>>maimon scan
+```
+* by ACk flag
+```console
+:~$ nmap -sA -v [ip address]
+-sA>>ack probe scan
+```
+* UDP scan (firewall is off)
+```console
+:~$nmap -sU -v [ip address]
+-sU>>UDP scan
+```
+* other port and application scanning meathods
+```console
+:~$nmap -sI -v [target IP address]
+-sI>>IDLE/IPID Header Scan
+#############################
+nmap -sY -v [target IP address]
+-sY>>SCTP init scan
+#############################
+nmap -sZ -v [target IP address]
+-sZ>>SCTP COOKIE ECHO Scan
+```
+</details>
+<details>
+<summary>Version scan/agressive scan</summary>
+
+* version
+```console
+:~$nmap -sV [ip address]
+-sV>>version scan
+##############################
+nmap -A 10.10.1.* (* do all subnet scan)
+-A>>agressive scan
+(performs -sV -O -sC(script scanning) --traceroute)
+```
+</details>
+<details>
+<summary>OS discovery</summary>
+
+* os discovery using nmap script engine(NSE)>>using -O -A NSE
+```console
+:~$nmap --script smb-os-discovery.nse [ip address]
