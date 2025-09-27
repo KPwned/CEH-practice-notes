@@ -359,6 +359,10 @@ set RHOSTS [ip range]
 threads 11
 
 ```
-* scanning network using shellgpt
+</details>
+<details>
+<summary>Scanning network using sgpt</summary>
+
 ```console
-:~$ 
+:~$ sgpt --chat scan --shell "prompt (by using HPING3"
+```
