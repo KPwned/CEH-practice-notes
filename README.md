@@ -180,6 +180,9 @@ python3 billcipher.py
 
 
 
+
+
+
 # Scanning Networks
 <details>
 <summary>Host discovery</summary>
@@ -364,5 +367,32 @@ threads 11
 <summary>Scanning network using sgpt</summary>
 
 ```console
-:~$ sgpt --chat scan --shell "prompt (by using HPING3"
+:~$ sgpt --chat scan --shell "prompt (by using HPING3")
+```
+
+</details>
+
+
+
+
+
+# Enumeration
+<details>
+<summary>Netbios enumeration</summary>
+
+* nbtstat
+
+```console
+:~$ nbtstat -a [ip address]
+-a>>displays the NetBIOS name table of a remote computer.
+
+
+
+nbtstat -c 
+-c>> displays the cashe of netbios
+
+
+
+net use
+>>shows active connection
 ```
