@@ -396,3 +396,66 @@ nbtstat -c
 net use
 >>shows active connection
 ```
+
+</details>
+
+<details>
+
+<summary>SNMP enumeration using tools</summary>
+
+* SnmpWalk]
+```console
+:~$ snmpwalk -v1 -c public <Ip address>
+-v1>>version of snmp
+-c>>community string(public/private)
+
+#for v2 snmp
+
+snmpwalk -v2c -c public <ipaddress>
+-v2c>>version
+```
+</details>
+
+<details>
+<summary>LDAP enumaration</summary>
+
+* By using AD explorer
+```console
+:~$open exe file in explorer
+```
+</details>
+<details>
+<summary>NFS enumeration</summary>
+
+* by using nmap
+```console
+:~$ nmap -p 2049 [ip addr] 
+-p>> to specify port
+
+to check target is NFS is enabled or not
+(to enable it in target device use server manager)
+
+
+than open super enum tool 
+create a file included target ip as Target.txt
+#echo "target ip" >> target.txt
+ next
+
+./superenum
+
+(If you get an error running the ./superenum script, execute chmod +x superenum command, then repeat Step#13.)
+```
+
+* by RPCScan
+```console
+:~$ cd RPCScan
+python3 rpc-scan.py [Target IP address] --rpc
+--rpc>> lists the RPC (portmapper)
+```
+</details>
+<details>
+<summary>DNS enumeration</summary>
+
+* using zone transfer
+```console
+:~$ 
