@@ -454,8 +454,42 @@ python3 rpc-scan.py [Target IP address] --rpc
 ```
 </details>
 <details>
-<summary>DNS enumeration</summary>
+<summary>DNS enumeration using zone transfer</summary>
 
-* using zone transfer
+* By using dig command
 ```console
-:~$ 
+:~$ dig ns [target domain]
+ns>>shows the name server
+```
+* To check it has zone transfer or not
+```console
+:~$ dig @ [name server] [target domain] axfr
+axfr >> retrives zone transfer info
+```
+* By using nslookup
+```console
+:~$ nslookup
+set querytype=soa
+
+soa>>sets the query type to SOA (Start of Authority) record to retrieve administrative information about the DNS zone of the target domain certifiedhacker.com.
+
+then in interactive mode
+
+ls -d [name server]
+## this command checks is domain supoort zone tarnsfer or not
+```
+</details>
+
+<details>
+<summary>SMTP enumeration</summary>
+
+* Usimg nmap
+```console
+:~$ nmap -p 25 --script=smtp-enum-users [ip]
+##shows all the mail users
+## to check the script >> nmap --script-help 'http-*' | less
+
+
+nmap -p 25 --script=smtp-open-relay [target IP]    
+
+```
