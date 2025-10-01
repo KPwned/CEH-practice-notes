@@ -2,7 +2,11 @@
 # Reconnasiance/Footprinting
 <details>
   <summary>To find the subdomain</summary>
-  
+
+* nmap to find subdomain
+```console
+:~$ nmap -p 53 --script dns-brute <domain>
+``` 
 * google
 ```console
   :~$ site:example.com -inurl:www
