@@ -497,3 +497,29 @@ ls -d [name server]
 nmap -p 25 --script=smtp-open-relay [target IP]    
 
 ```
+</details>
+
+# Vulnerability Analysis
+<details>
+
+<summary>Research on CWE (common weakness enumeration)</summary>
+
+* Research CWE website
+```console
+:~$ cwe.mitre.org
+aslo can check access content >> cwe list
+```
+* Vulnerability analysis using OpenVAS
+```console
+:~$ to open OPENVAS 
+parrot cmd >> 
+docker run -d -p 443:443 --name openvas mikesplain/openvas
+then http://127.0.0.1
+passward:admin admin
+```
+* Perform Vulnerability Analysis using AI
+```console
+:~$  sgpt --chat nikto --shell "Scan the URL https://www.certifiedhacker.com to identify potential
+
+
+ sgpt --chat vuln --shell "Perform vulnerability scan on target url http://www.moviescope.com with Nmap with port 80"
