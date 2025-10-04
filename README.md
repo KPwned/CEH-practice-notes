@@ -509,6 +509,10 @@ nmap -p 25 --script=smtp-open-relay [target IP]
 :~$ cwe.mitre.org
 aslo can check access content >> cwe list
 ```
+</details>
+<details>
+<summary>OpenVAS</summary>
+
 * Vulnerability analysis using OpenVAS
 ```console
 :~$ to open OPENVAS 
@@ -517,9 +521,24 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas
 then http://127.0.0.1
 passward:admin admin
 ```
+</details>
+<details>
+<summary>Using AI </summary>
+
 * Perform Vulnerability Analysis using AI
 ```console
-:~$  sgpt --chat nikto --shell "Scan the URL https://www.certifiedhacker.com to identify potential
+:~$ sgpt --chat nikto --shell "Scan the URL https://www.certifiedhacker.com to identify potential vulnerabilities with nikto"
 
 
  sgpt --chat vuln --shell "Perform vulnerability scan on target url http://www.moviescope.com with Nmap with port 80"
+
+ ```
+
+ ## by using skipfish (website)
+ ```console
+ :~$ sgpt --chat vuln --shell "Perform a vulnerability scan on target url http://testphp.vulnweb.com with skipfish" 
+ open the saved html file with browser
+ ```
+
+</details>
+
