@@ -1203,3 +1203,96 @@ and go to victim machine n instal TCPview
 ```console
 :~$install currports and click on exe and properties to see details
 ```
+</details>
+
+# Sniffing
+<details>
+
+<summary>Perform Active Sniffing</summary>
+
+* Perform MAC Flooding using macof
+```console
+:~$open wireshark
+open new terminal and cd to root
+
+macof -i eth0 -n 10
+-i> interface
+-n > number of packets
+
+for single target
+macof -i eth0 -d [Target IP Address] 
+-d>target destination
+```
+* Perform a DHCP Starvation Attack using Yersinia
+```console
+:~$ yersinia -I 
+-I>interactive session
+press any key in session and press h to get help cmd
+press F2 to go DHCP session
+x to get available attack option
+q to stop yersinia
+```
+</details>
+<details>
+<summary>Perform Network Sniffing using Various Sniffing Tools</summary>
+
+* Perform password sniffing using Wireshark
+```console
+:~$ open any browser and
+http://www.moviescope.com/
+login
+and back to attacker system
+in wireshark
+save the captured packet
+filter :http.request.method == POST
+navigate to Edit --> Find Packet
+
+Click Display filter, select String from the drop-down options, click Narrow & Wide and select Narrow (UTF-8 / ASCII) from the drop-down options and click Packet list, select Packet details from the drop-down options.
+
+In the field next to String, type pwd and click the Find button.
+
+to sniff remotely in wireshark
+use remote desktop option and enable  Remote Packet Capture Protocol v.0 and close the remote window and come back to wireshark (attacker machine)
+
+here navigate to capture option
+and click manage interface
+remote interface
+and + icon
+add the system
+```
+</details>
+<details>
+<summary>Detect Network Sniffing</summary>
+
+* Detect ARP Poisoning and Promiscuous Mode in a Switch-Based Network
+```console
+:~$open cain in search bar (attacker system)
+configure ethernet card
+ Ensure that the Adapter associated with the IP address 
+ and then click Start/Stop Sniffer
+
+Click the plus (+) icon or right-click in the window and select Scan MAC Addresses to scan the network for hosts.
+MAC Address Scanner window appears. Check the All hosts in my subnet radio button. Select the All Tests
+Now, click the APR tab at the bottom of the window.
+and press + icon
+here select the 2 system to capture the packet bw them
+Click on the Start/Stop APR
+To generate traffic between the machines,
+go to parrot and 
+
+hping3 {target ip address} -c 100000
+-c>count
+come back to cain opened system and open
+wireshark
+click Edit in the menu bar and select Preferences….
+ expand the Protocols node.
+ Detect ARP request storms checkbox and ensure that the Detect duplicate IP address configuration checkbox is checked; click OK.
+click on ethernet interface to start capture the packet
+stop the capture 
+Click Analyze from the menu bar and select Expert Information
+```
+>> to detect promiscous mode
+```console
+:~$ nmap --script=sniffer-detect {target ip address/range}
+
+
