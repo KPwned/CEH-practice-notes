@@ -1294,5 +1294,30 @@ Click Analyze from the menu bar and select Expert Information
 >> to detect promiscous mode
 ```console
 :~$ nmap --script=sniffer-detect {target ip address/range}
+```
+</details>
+
+<details>
+<summary>Social engineering</summary>
+
+* Sniff Credentials using the Social-Engineer Toolkit (SET)
+```console
+:~$setoolkit 
+to lounch SET
+navigate to site clone
+and clone the prefered site 
+and send it to victim by sending the host ip 
+```
+</details>
+<details>
+<summary>Detect phishing using Netcraft</summary>
+
+* Netcraft
+```console
+:~$netcraft extension to detect phishishing site
+```
+</details>
+
+
 
 
