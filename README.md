@@ -1377,11 +1377,14 @@ in guardian you can block the ip from the option
 ```
 </details>
 
-
+# Session Hijacking
 <details>
-<summary> Perform Session Hijacking</summary>
 
-* Hijack a session using Caido
+
+<summary>Hijack a session using Caido</summary>
+
+* Caido
+
 ```console
 :~$open cmd prompt as admin
 ipconfig/flushdns
@@ -1393,8 +1396,10 @@ and start
  + Create a project button to create a new project. Create a project pop-up appears, name it as Session Hijacking and click Create.
  Click on Intercept option on the left pane
   Forwarding icon and wait until it changes to Queuing
+  ```
+  ```console
 
-  in another system 
+  :~$ in another system 
   Open Firefox web browser and navigate to http://10.10.1.11:8080/ca.crt.
   to download the certificate
   Firefox web browser, select Settings 
@@ -1407,6 +1412,8 @@ back to caido
 On the Requests tab, for all www.moviescope.com requests, modify www.moviescope.com to www.goodshopping.com in all the captured GET requests and Forward all the requests.
 switch back to victim tab and do this until victim see different website
 ```
+</details>
+
 <details>
 <summary>Intercept HTTP Traffic using Hetty</summary>
 
