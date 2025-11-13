@@ -1377,3 +1377,66 @@ in guardian you can block the ip from the option
 </details>
 
 
+<details>
+<summary> Perform Session Hijacking</summary>
+
+* Hijack a session using Caido
+```console
+:~$open cmd prompt as admin
+ipconfig/flushdns
+search for c caido in search bar
+
+Caido application window appears, click on menu besides Start button and select Edit.
+click on the radio button besides All interfaces (0.0.0.0) and click save
+and start
+ + Create a project button to create a new project. Create a project pop-up appears, name it as Session Hijacking and click Create.
+ Click on Intercept option on the left pane
+  Forwarding icon and wait until it changes to Queuing
+
+  in another system 
+  Open Firefox web browser and navigate to http://10.10.1.11:8080/ca.crt.
+  to download the certificate
+  Firefox web browser, select Settings 
+  earch for Certificates and open View Certificates.
+   Authorities tab and click on Import…
+Select File containing CA certificate(s) to import
+When prompted, click the Trust this CA to identify websites checkbox and click on OK
+On the Settings page, search for proxy and open
+back to caido
+On the Requests tab, for all www.moviescope.com requests, modify www.moviescope.com to www.goodshopping.com in all the captured GET requests and Forward all the requests.
+switch back to victim tab and do this until victim see different website
+```
+<details>
+<summary>Intercept HTTP Traffic using Hetty</summary>
+
+* hetty
+```console
+:~$ open ceh tool and install hetti tool
+in same system web browser
+http://localhost:8080
+and give a name '
+open proxy page from left 3 line
+and add the proxy of attacker ip and port 8080
+and vist the website and return to attacker machine you can see the passwor enterd in post packet under body
+```
+</details>
+
+
+<details>
+<summary>Detect session hijacking using Wireshark</summary>
+
+* wireshark
+```console
+:~$open wireshark as a victim
+back to parrot
+and open bettercap by
+bettercap -iface eth0
+there help
+and on the module by
+net.probe on
+ net.recon on
+ net.sniff on
+ bettercap sends several ARP broadcast requests to the hosts
+ ```
+ </details>
+ 
