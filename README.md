@@ -1319,6 +1319,7 @@ and send it to victim by sending the host ip
 </details>
 
 # Perform DoS and DDoS Attacks using Various Techniques
+<details>
 <summary>Perform a DDoS Attack using ISB and UltraDDOS-v2</summary>
 
 * ISB (I am so bored)
@@ -1439,4 +1440,3 @@ net.probe on
  bettercap sends several ARP broadcast requests to the hosts
  ```
  </details>
- 
