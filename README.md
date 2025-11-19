@@ -1447,3 +1447,174 @@ net.probe on
  bettercap sends several ARP broadcast requests to the hosts
  ```
  </details>
+
+
+# Evading IDS,Firewall and Honeypots
+
+<details>
+<summary>Perform Intrusion Detection using Various Tools</summary>
+
+* Detect intrusions using Snort
+```console
+:~$ install the Snort and replace some files in theire (Installation)
+Navigate to the etc folder in the specified location, E:\CEH-Tools\CEHv13 Module 12 Evading IDS, Firewalls, and Honeypots\Intrusion Detection Tools\Snort\snortrules-snapshot-29150\etc of the Snort rules; copy snort.conf and paste it in C:\Snort\etc.
+
+Copy so_rules and prepoc_rules and also rules folder and paste it into C:\Snort
+
+
+
+
+
+open snort in cmd by
+
+snort
+and ctrl c
+then 
+snort -W
+notedown the index number here its 2 
+and to enable ethernet interface
+>> snort -dev -i 2
+leave that cmd open and 
+open another cmd and ping google.com to seee that snort is working
+```
+>Now configure the snort.conf file
+```console
+:~$ open the file with notepad++
+bonus > its in mail which is already configured
+```
+>or to configuring manually 
+```console
+:~$ step 1: 
+scroll down to the Step #1: Set the network variables section (Line 41) of the snort.conf file. In the HOME_NET line (Line 45), replace any with the IP addresses of the machine (target machine) on which Snort is running. Here, the target machine is Windows 11 and the IP address is 10.10.1.11.
+
+step 2: 
+DNS_SERVERS line by replacing $HOME_NET with your DNS Server IP address; otherwise, leave this line as it is. here its 8.8.8.8
+
+step 3:
+Scroll down to RULE_PATH (Line 104). In Line 104, replace ../rules with C:\Snort\rules in Line 105, replace ../so_rules with C:\Snort\so_rules and in Line 106, replace ../preproc_rules with C:\Snort\preproc_rules.
+
+step 4:
+In Lines 109 and 110, replace ../rules with C:\Snort\rules. Minimize the Notepad++ window.
+
+step 5:
+Navigate to C:\Snort\rules, and create two text files; name them white_list and black_list and change their file extensions from .txt to .rules.
+
+step 6:
+Switch back to Notepad++, scroll down to the Step #4: Configure dynamic loaded libraries section (Line 238). Configure dynamic loaded libraries in this section.
+
+step 7:
+Add the path to dynamic preprocessor libraries (Line 243); replace /usr/local/lib/snort_dynamicpreprocessor/ with your dynamic preprocessor libraries folder location.
+
+In this task, the dynamic preprocessor libraries are located at C:\Snort\lib\snort_dynamicpreprocessor
+
+At the path to base preprocessor (or dynamic) engine (Line 246), replace /usr/local/lib/snort_dynamicengine/libsf_engine.so with your base preprocessor engine C:\Snort\lib\snort_dynamicengine\sf_engine.dll.
+
+Ensure that the dynamic rules libraries (Line 249) is commented out
+
+step 8:
+Scroll down to the Step #5: Configure preprocessors section (Line 253), the listed preprocessor. This does nothing in IDS mode, however, it generates errors at runtime.
+
+Comment out all the preprocessors listed in this section by adding '#' and (space) before each preprocessor rule (261-265).
+
+step 9:
+Scroll down to line 321 and delete lzma keyword and a (space).
+
+step 10:
+Scroll down to Step #6: Configure output plugins (Line 513). In this step, provide the location of the classification.config and reference.config files.
+
+These two files are in C:\Snort\etc. Provide this location of files in the configure output plugins (in Lines 527 and 528) (i.e., C:\Snort\etc\classification.config and C:\Snort\etc\reference.config).
+
+step 11:
+In Step #6, add to line (529) 
+output alert_fast: alerts.ids:
+
+step 12:
+In the snort.conf file, find and replace the ipvar string with var. To do this, press Ctrl+H on the keyboard. The Replace window appears; enter ipvar in the Find what : text field, enter var in the Replace with : text field, and click Replace All.
+
+save snort
+
+step 13:
+Navigate to C:\Snort\rules and open the icmp-info.rules file with Notepad++
+
+and add line at last
+
+
+>> alert icmp $EXTERNAL_NET any -> $HOME_NET 10.10.1.11 (msg:"ICMP-INFO PING"; icode:0; itype:8; reference:arachnids,135; reference:cve,1999-0265; classtype:bad-unknown; sid:472; rev:7;)
+
+
+then open cmd
+ cd C:\Snort\bin
+ snort -iX -A console -c C:\Snort\etc\snort.conf -l C:\Snort\log -K ascii
+ (replace X with your device index number; in this task: X is 2)
+ to start snort
+
+ and open attacker machine and ping
+ ping google.com -t (-t continues ping)
+ come to snort and observe
+ ctrl c
+
+ Go to the C:\Snort\log\10.10.1.19 folder and open the ICMP_ECHO.ids file with Notepad++. You see that all the log entries are saved in the ICMP_ECHO.ids file.
+ ```
+ </details>
+ <details>
+ <summary>Deploy Cowrie Honeypot to Detect Malicious Network Traffic</summary>
+
+ * Cowrie setup
+ ```console
+ :~$ ubuntu with root
+  sudo adduser --disabled-password cowrie
+  to create a new user with no passwords
+  and then copy cowrie folder from ceh tools navigate to honeypot tools
+
+
+  If ceh-tools on 10.10.1.11 option is not present then follow the below steps to access CEH-Tools folder:
+
+Open Files and navigate to the + Other Locations from the left pane
+In the Connect to Server field, type smb://10.10.1.11 and press Enter to access Windows 11 shared folders.
+The security pop-up appears; enter the Windows 11 machine credentials (Admin/Pa$$w0rd) and click Connect.
+The Windows shares on 10.10.1.11 window appears; double-click the CEH-Tools folder.
+
+```
+```console
+:~$ open a new terminal with admin
+jump to cowrie directory
+pip install --upgrade -r requirements.txt 
+>> to install required dependencies
+then 
+chmod -R 777 cowrie
+
+iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
+>> to direct all traffic toward 22 to 2222
+
+
+To facilitate enhanced security measures, run the following commands to configure authbind, enabling the Cowrie honeypot to operate on port 22 without requiring root privileges:
+
+touch /etc/authbind/byport/22
+chown cowrie:cowrie /etc/authbind/byport/22
+chmod 770 /etc/authbind/byport/22
+
+
+virtualenv --python=python3 cowrie-env
+source cowrie-env/local/bin/activate
+```
+```console
+:~$ exit to exit the root prev
+cd cowrie 
+bin/cowrie start
+ sudo su command and execute cd var/log/cowrie/
+  tail cowrie.log 
+>> to view log file
+```
+```console
+:~$ in attacker machine i.e parrot
+nmap -p- -sV 10.10.1.9
+then open putty by putty cmd
+enter the target ip
+back to ubuntu and run
+tail cowrie.log
+
+again switch back to parrot and login to putty
+ip and random password and perform some cmd fn there like ls cd pwd whoami etc
+again switch back to ubuntu and 
+tail cowrie.log
+```
