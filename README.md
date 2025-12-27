@@ -2089,3 +2089,153 @@ and type required options to get info
 and scan for threat
 ```
 </details>
+
+# Iot and OT hacking
+
+<details>
+
+<summary>Perform Footprinting using Various Footprinting Techniques</summary>
+
+* through online
+```console
+:~$ Launch any web browser, go to https://www.whois.com/whois
+ type www.oasis-open.org
+ and then look for the details
+ and 
+ open a new tab, and go to https://www.exploit-db.com/google-hacking-database.
+ Google Hacking Database page appears; type SCADA 
+ Open a new tab and go to https://www.google.com. In the search field, enter "login" intitle:"scada login".
+ you can use advanced search operators such as intitle:"index of" scada
+ then go to shodan
+ Shodan main page appears; type port:1883
+ additional filters
+ Search for Modbus-enabled ICS/SCADA systems:
+
+port:502
+
+Search for SCADA systems using PLC name:
+
+"Schneider Electric"
+
+Search for SCADA systems using geolocation:
+
+SCADA Country:"US"
+```
+</details>
+
+<details>
+
+<summary>Capture and analyze IoT traffic using Wireshark</summary>
+
+ 
+```console
+:~$ to install MQTT Broker on the Windows Server 2019
+Navigate to Z:\CEHv13 Module 18 IoT and OT Hacking\Bevywise IoT Simulator folder and double-click on the Bevywise_MQTTRoute_4.exe
+run it 
+To create IoT devices, we must install the IoT simulator on the client machine.
+navigate to server 2022 machine
+Z:\CEHv13 Module 18 IoT and OT Hacking\Bevywise IoT Simulator folder and double-click on the Bevywise_IoTSimulator_3.exe
+ Bevywise IoT Simulator is installed successfully. To launch the IoT simulator, navigate to the C:\Bevywise\IotSimulator\bin directory and double-click on the runsimulator.bat file.
+ (http://127.0.0.1:9000/setnetwork?network=HEALTH_CARE)
+
+```
+```console
+:~$ we will create a virtual IoT network and virtual IoT devices. Click on the menu icon and select the +New Network
+In the next screen, we will setup the Simulator Settings. Set the Broker IP Address as 10.10.1.19 (the IP address of the Windows Server 2019 ). Since we have installed the Broker on the web server
+Add blank Device
+ Create New Device popup opens. Type the device name (here, we use Temperature_Sensor), enter Device Id (here, we use TS1), 
+ To connect the Network and the added devices to the server or Broker, click on the Start Network red color circular icon in right corner.
+Next, switch to the Windows Server 2019 machine. Open a web browser, and go to http://localhost:8080 and login using admin/admin
+you can see device in recent connection
+switch back to windows 22 server
+Next, we will create the Subscribe command for the device Temperature_Sensor.
+Click on the Plus icon in the top right corner and select the Subscribe to Command option.
+The Subscribe for command - TS1 popup opens. Select On start under the Subscribe on tab, type High_Tempe under the Topic tab, and select 1 Atleast once below the Qos option.
+inimise the Edge browser. Click Type here to search field on the Desktop, search for wireshark
+The Wireshark Application window appears, select the Ethernet as interface. which having system ip
+Leave the IoT simulator running and switch to the Windows Server 2019 machine.
+
+Navigate to Devices menu and click on connected device i.e.TS1.
+```
+
+```console
+:~$ Now, we will send the command to TS1 using the High_Tempe topic.
+
+ Send Command section, select Topic as High_Tempe, type Alert for High Temperature in Message field and click on the Submit button.
+ Next, switch to Windows Server 2022 machine.
+  verify the communication, we have executed Wireshark application, switch to the Wireshark traffic capturing window.
+  mqtt under the filter field and press Enter. To display only the MQTT
+
+  Select any Publish Message packet from the Packet List pane. In the Packet Details pane at the middle of the window, expand the Transmission Control Protocol, MQ Telemetry Transport Protocol, and Header Flags nodes.
+
+  (Note: After establishing a successful connection with the MQTT broker, the MQTT client can publish messages. The headers in the Publish Message packet are given below:
+
+Header Flags: Contains information regarding the MQTT control packet type.
+DUP flag: If the DUP flag is 0, it indicates the first attempt at sending this PUBLISH packet; if the flag is 1, it indicates a possible re-attempt at sending the message.
+QoS: Determines the assurance level of a message.
+Retain Flag: If the retain flag is set to 1, the server must store the message and its QoS, so it can cater to future subscriptions matching the topic.
+Topic Name: Contains a UTF-8 string that can also include forward slashes when it needs to be hierarchically structured.
+Message: Contains the actual data to be transmitted.
+Payload: Contains the message that is being published.)
+
+
+
+Select any Publish Release packet from the Packet List pane. In the Packet Details pane at the middle of the window, expand the Transmission Control Protocol, MQ Telemetry Transport Protocol, and Header Flags nodes.
+(Note: A Publish Release (PUBREL) packet is the response to a Publish Received (PUBREC) packet.)
+
+Now, scroll down, look for the Publish Complete packet from the Packet List pane, and click on it. In the Packet Details pane at the middle of the window, expand the Transmission Control Protocol, MQ Telemetry Transport Protocol, and Header Flags nodes.
+
+(Note: The Publish Complete (PUBCOMP) packet is the response to a Publish Release (PUBREL) packet.)
+
+Now, scroll down, look for the Publish Received packet from the Packet List pane, and click on it. In the Packet Details pane at the middle of the window, expand the Transmission Control Protocol, MQ Telemetry Transport Protocol, and Header Flags nodes.
+```
+
+</details>
+<details>
+
+<summary>Perform Replay Attack on CAN Protocol</summary>
+
+```console
+:~$ Controller Area Network (CAN)
+open ubuntu and cmd
+Now, to setup a virtual CAN interface issue following commands:
+
+sudo modprobe can
+sudo modprobe vcan
+sudo ip link add dev vcan0 type vcan
+sudo ip link set up vcan0
+
+and to confirm ifconfig and you can see vcan0 interface
+and then 
+Run chmod -R 777 ICSim
+Now, run cd ICSim to navigate to ICSim directory and execute "make" command to create two executable files for IC Simulator and CANBus Control Panel.
+Run ./icsim vcan0 to start the ICSim simulator.
+Open a new terminal tab and execute sudo su
+Navigate to ICSim directory to do so run cd ICSim/.
+Execute ./controls vcan0 to start the CANBus Control Panel. 
+```
+```console
+:~$ Now, we will start sniffer to capture the traffic sent to the ICSim Simulator by CANBus control panel simulator. To do so, open a new terminal tab and execute sudo su
+Navigate to ICSim directory to do so run cd ICSim/.
+Execute "cansniffer -c vcan0 " to start sniffing
+
+Open a new terminal and execute sudo su 
+Navigate to ICSim directory
+To capture the logs run candump -l vcan0. (L)
+
+(Use the following keys to perform various functions
+
+ICSim Functions	Keys
+Accelerate	Up arrow
+Left/Right Turn	Left arrow/ Right arrow
+Unlock Rear Left/Right doors	Right Shift + X / Right Shift + Y
+Unlock Front Left/Right doors	Right Shift +A / Right Shift + B
+Lock all doors	Hold Right Shift key + Tap Left Shift
+Unlock all doors	Hold Left Shift key + Tap Right Shift)
+
+
+
+Now, to perform replay attack, run canplayer -I candump-2024-05-07_063502.log and press enter.
+you can see the variation in simulater
+```
+</details>
