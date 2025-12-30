@@ -2239,3 +2239,25 @@ Now, to perform replay attack, run canplayer -I candump-2024-05-07_063502.log an
 you can see the variation in simulater
 ```
 </details>
+
+# Cloud Computing
+<details>
+<summary>Perform Reconnaissance on Azure</summary>
+
+* Azure Reconnaissance with AADInternals (Azure Active Directory (AAD) )
+```console
+:~$ windows 11
+E:\CEH-Tools\CEHv13 Module 19 Cloud Computing\GitHub Tools\ and copy AADInternals folder and paste it on Desktop.
+In the Windows search type powershell and under PowerShell click on Run as Administrator
+cd C:\Users\Admin\Desktop\AADInternals
+Install-Module AADInternals command to install AADInternals module.
+Import-Module AADInternals command, to import AADInternals
+Invoke-AADIntReconAsOutsider -DomainName company.com | Format-table (company name - given company)
+Now, we will perform user enumeration in Azure AD, in the PowerShell window type Invoke-AADIntUserEnumerationAsOutsider -UserName user@company.com
+> change the username (mail addrss)
+We can also perform the user enumeration by placing the usernames in a text file, by running Get-Content .\users.txt | Invoke-AADIntUserEnumerationAsOutsider -Method Normal. Where the users.txt file contains the target email addresses.
+Now, to get login information for a domain type Get-AADIntLoginInformation -Domain company.com and press Enter.
+Now, to get login information for a user type Get-AADIntLoginInformation -Domain user@company 
+to get the tenant ID for the given user, domain, or Access Token, type Get-AADIntTenantID -Domain company.com.
+to get registered domains from the tenant of the given domain Get-AADIntTenantDomains -Domain company.com
+```
