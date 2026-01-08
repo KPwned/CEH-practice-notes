@@ -2369,3 +2369,85 @@ now to scan vulnerable img
  use grep to find the ansr
  ```
  </details>
+ 
+ # Cryptography
+
+ <details>
+ <summary> Perform Multi-layer Hashing using CyberChef</summary>
+
+```console
+ :~$windows 11
+ desktop
+ new text and add some text in it
+ Launch any web browser, and go to https://gchq.github.io/CyberChef/
+ input a created file
+ in the search field present under Operations section, type md5 and drag MD5 from the results in the Operations section in to the Recipe section
+ Now, we will compute SHA1 hash of the output. To do so, search for sha1 and drag SHA1 from the Operations section to Recipe section ensure the number of rounds is 80.
+ Now, we will add HMAC as another layer of hash, search for hmac and drag HMAC 
+ In HMAC Recipe, enter the key as 12 and select the Hashing function as MD5
+ In addition, we can set break point to the hash operation by clicking on the Set breakpoint button present in the Recipe.
+```
+</details>
+<details>
+
+<summary>Perform File and Text Message Encryption using CryptoForge</summary>
+
+```console
+:~$Navigate to E:\CEH-Tools\CEHv13 Module 20 Cryptography\Cryptography Tools\CryptoForge. Right-click the Confidential.txt file and click Show more options and select Encrypt from the context menu.
+Type here to search icon in the Desktop, type crypto in the search field and click CryptoForge Text
+to write content inside itself
+```
+</details>
+<details>
+<summary>Create a Self-signed Certificate</summary>
+
+```console
+:~$Launch any web browser, and go to https://www.goodshopping.com
+as it doesnt have any digital certificqte it wont load
+Click the Type here to search icon present in the bottom-left of Desktop and type iis. Select Internet Information Services (IIS) Manager
+n SERVER2019 Home, double-click Server Certificates in the IIS section.
+The Server Certificates wizard appears; click Create Self-Signed Certificate… from the right-hand pane in the Actions section.
+The Create Self-Signed Certificate window appears; type GoodShopping in the Specify a friendly name for the certificate field. Ensure that the Personal option is selected in the Select a certificate store for the new certificate field; then, click OK.
+Expand the Sites node from the left-hand pane, and select GoodShopping from the available sites. Click Bindings… from the right-hand pane in the Actions section.
+The Add Site Binding window appears; choose https from the Type field drop-down list. Once you choose the https type, the port number in the Port field automatically changes to 443 (the channel on which HTTPS runs).
+Choose the IP address on which the site is hosted (here, 10.10.1.19).
+Under the Host name field, type www.goodshopping.com. Under the SSL certificate field, select GoodShopping from the drop-down list, and click OK.
+Now, right-click the name of the site for which you have created the self-signed certificate (here, GoodShopping) and click Refresh from the context menu.
+Open the Mozilla Firefox browser and go to https://www.goodshopping.com
+```
+</details>
+<details>
+<summary>Perform Disk Encryption</summary>
+
+* Perform disk encryption using VeraCrypt
+
+```console
+:~$ Search for veracrypt in search icon
+click the Create Volume button.
+ VeraCrypt Volume Creation Wizard window appears. Ensure that the Create an encrypted file container radio-button is selected and click Next
+ Volume Type wizard, keep the default settings and click Next.
+ Specify Path and File Name window appears; navigate to the desired location (here, Desktop), provide the File name as MyVolume,
+ Encryption Options wizard, keep the default
+ Volume Size wizard, ensure that the MB radio-button is selected type 5 and enter
+ The Volume Format wizard appears; ensure that FAT is selected in the Filesystem option and Default is selected in Cluster option
+ The Volume Format wizard appears; ensure that FAT is selected in the Filesystem option and Default is selected in Cluster option.
+ Move your mouse as randomly as possible within the Volume Creation Wizard
+ The VeraCrypt main window appears; select a drive (here, I:) and click Select File….
+ The Select a VeraCrypt Volume window appears; navigate to Desktop, click MyVolume, and click Open.
+hit mount
+Create a text file on Desktop and name it Test.
+Copy the file from Desktop and paste it into Local Disk (I:).
+```
+</details>
+<details>
+<summary> Perform Cryptography using AI</summary>
+
+* Perform cryptographic techniques using ShellGPT
+```console
+:~$Now, we will perform multi-layer hashing using ShellGPT to do so, run sgpt --shell "Calculate MD5 hash of text 'My Account number is 0234569198' and calculate the SHA1 hash value of the MD5 value"
+ calculate hash of a file using ShellGPT, to do so, run sgpt --chat hash --shell "Calculate CRC32 hash of the file passwords.txt located at /home/attacker"
+ To perform basic encoding using ShellGPT run sgpt --shell "Encode 'Hello World' text using base64 algorithm and save the result to Output.txt file".
+ Now we will decode the encoded data using ShellGPT to do so, run sgpt --shell "Decode the contents of encoded Output.txt file located at /home/attacker using base64 algorithm".
+ ```
+ </details>
+ 
