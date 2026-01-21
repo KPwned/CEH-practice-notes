@@ -507,7 +507,9 @@ nmap -p 25 --script=smtp-open-relay [target IP]
 
 ```
 </details>
+
 <details>
+
 <summary>perform enumeration using Global Inventory</summary>
 
 ```console
@@ -515,9 +517,12 @@ nmap -p 25 --script=smtp-open-relay [target IP]
 single address scan
 The next section is Authentication Settings; select the Connect as radio button and enter the Windows Server 2022 machine credentials (Domain\Username: Administrator and Password: Pa$$w0rd
 and hover on summary computer
+```
 
+</details>
 
 # Vulnerability Analysis
+
 <details>
 
 <summary>Research on CWE (common weakness enumeration)</summary>
@@ -528,9 +533,6 @@ and hover on summary computer
 aslo can check access content >> cwe list
 ```
 </details>
-
-# Vulnerability analysis
-
 <details>
 <summary>OpenVAS</summary>
 
