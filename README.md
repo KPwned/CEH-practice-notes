@@ -109,8 +109,8 @@ tracert -h 5 www.target.com
    marketplace install all
 
   (then to create workspace)
-  workspace create CEH
-  wrokspace list
+  workspaces create CEH
+  wrokspaces list
   ```
   * To add the domain to workspaces
   ```console
@@ -128,6 +128,7 @@ tracert -h 5 www.target.com
   back
 
   modules load reverse_resolve
+  (if asks for source >> options set source <ip>)
   modules load(desired module)
   show hosts(shows all hosts which is harvested)
 ```
@@ -398,7 +399,7 @@ nbtstat -c
 
 
 net use
->>shows active connection
+>>shows active connection and shared folder
 ```
 
 </details>
