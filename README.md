@@ -439,6 +439,11 @@ snmpwalk -v2c -c public <ipaddress>
 
 to check target is NFS is enabled or not
 (to enable it in target device use server manager)
+click add roles and features
+next till server roles
+and expand file and storage service
+then expand file and iscsi
+server for nfs
 
 
 than open super enum tool 
@@ -482,6 +487,9 @@ then in interactive mode
 
 ls -d [name server]
 ## this command checks is domain supoort zone tarnsfer or not
+
+
+>> this finds responsible email by set type=soa
 ```
 </details>
 
@@ -499,6 +507,15 @@ nmap -p 25 --script=smtp-open-relay [target IP]
 
 ```
 </details>
+<details>
+<summary>perform enumeration using Global Inventory</summary>
+
+```console
+:~$ install global inventory from ceh tools (enumeration)
+single address scan
+The next section is Authentication Settings; select the Connect as radio button and enter the Windows Server 2022 machine credentials (Domain\Username: Administrator and Password: Pa$$w0rd
+and hover on summary computer
+
 
 # Vulnerability Analysis
 <details>
@@ -511,6 +528,9 @@ nmap -p 25 --script=smtp-open-relay [target IP]
 aslo can check access content >> cwe list
 ```
 </details>
+
+# Vulnerability analysis
+
 <details>
 <summary>OpenVAS</summary>
 
@@ -521,6 +541,8 @@ parrot cmd >>
 docker run -d -p 443:443 --name openvas mikesplain/openvas
 then http://127.0.0.1
 passward:admin admin
+and then
+scan > task > task wizard > target ip
 ```
 </details>
 <details>
