@@ -593,6 +593,9 @@ pluma hash.txt n copy it here
 * Enable reverse shell
 ```console
 ~$:docker run -d -p 80:80 reverse_shell_generator
+>>if found error service apache stop
+>> sudo lsof -i :80
+>> kill -9 PID >> to kill the process on port if only error occured
 ```
 * firefox >> http://localhost
 ```console
@@ -632,12 +635,13 @@ now copy the shell file wee created and paste it in wind 11 cehtool folder by sm
 in winn 11 navigate to this file and paste it in win 11 desktop
 ```
 
-* open powershell as a admin
+* open powershell as a admin (victim machine)
 then type
 ```console
 ~$: cd C:\Users\Admin\Desktop
 and run .\"filename"
 >>to run a file in victim machine
+>>check the user
 ```
 </details>
 <details>
@@ -699,6 +703,8 @@ execute
 ```console
 ~$:chmod +x fuzz.py
 ./fuzz.py
+
+relunch both vuln and immunity debugger after crash
 ```
 * pattern create by ruby tool (in a same script file)
 ```console
