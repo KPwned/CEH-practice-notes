@@ -648,7 +648,7 @@ and run .\"filename"
 <summary>Perform Buffer Overflow Attack to Gain Access to a Remote System</summary>
 
 * download vulnserver from module6 file and run
-* and also install immunity debugger and run it as admin
+* and also install immunity debugger and run it as admin (run both application in admin each time)
 ```console
 ~$:click file in the menu bar
 and click attach n attach the vulnserver
@@ -708,7 +708,7 @@ relunch both vuln and immunity debugger after crash
 ```
 * pattern create by ruby tool (in a same script file)
 ```console
-~$:in linux cmd >> /usr/share/metasploit-framework/tools/exploit/pattern_crteate.rb -l 1040
+~$:in linux cmd >> /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 1040
 -l>>leangth of a byte size
 
 >>it creates some random piece of bytes
@@ -721,19 +721,21 @@ paste it in
 chmod +x findoff.py
 ./findoff.py
 and open immunity debugger and notedown the EIP (offset value)
+>> if it wont show the offset value copy and paste same random char in findoff.py make more char
 ```
 then
 ```console
 ~$: /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 10400 -q (offset value)
 -q>>offset value
 then close the cmd window
-resrart the immunity devbugger and vuln server
+restart the immunity debugger and vuln server
 ```
 then (in script file)
 ```console
 ~$: chmod +x overwrite.py
 ./overwrite.py
 >> to overwrite EIP
+restart both imm vulns
 ```
 * by bad chars
 ```console
@@ -741,6 +743,7 @@ then (in script file)
 ./badchars.py
 
 >> in immunity debugger click on ESP and follow in dump option
+restart vuln and immu
 ```
 * Now we have to identify the right module of the vulnerable server (mona.py)
 ```console
@@ -764,6 +767,7 @@ the address of vulnerable module you will found in first result
 
  Immunity Debugger window, click the Go to address in Disassembler icon (the arrow towards right)
 in pop enter the address of vulnerable module (625011af)
+>>press f2 to setup a breakpoint
 run debugger
 
 and in script file
