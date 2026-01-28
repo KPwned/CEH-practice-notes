@@ -863,6 +863,8 @@ and Jason
 and copy spirex and paste it in remote system
 and install it in remote system
 ```
+</details>
+<details>
 <summary> Maintain Persistence by Modifying Registry Run Keys</summary>
 
 * create a payload
@@ -967,6 +969,7 @@ nmap -A -sC -sV 10.10.1.22
 _sC >> script (nmap script engine)
 -sV >> Version/service detection
 after this scan we can see domain name here its CEH.com
+>> which help in AS-REP attack
 ```
 * Perform AS-REP Roasting Attack (to check which user dont enable DONT_REQUIRE_PREAUTH in DC)
 ```console
