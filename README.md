@@ -1384,6 +1384,17 @@ in web address url http://ip
 * ISB (I am so bored)
 ```console
 :~$open and install ISB exe from ceh tools and give the credentials
+set target ip
+and port no 80
+tcp flood 
+TCP Flood tab and type 10 in the Interval field, 256 in the Buffer field and 1000 in the Threads field.
+
+
+In Windows Server 2022 machine, navigate to Z:\CEHv13 Module 10 Denial-of-Service\DoS and DDoS Attack Tools\UltraDDoS and double-click ultraddos.exe
+In the Ultra DDOS v2 window, click on DDOS Attack button.
+ Please enter your target. This is the website or IP address that you want to attack. field, type 10.10.1.19 (IP address of Windows Server 2019
+ and aslo start ISB in other system
+
 ```
 
 > same open on the other system and open UltraDDOS-v2 add credential here
@@ -1429,10 +1440,13 @@ show application and navigate to system monitor and observe the memory usage
 
 ```console
 :~$ open anti ddos guardian tool in defender system and 
+in another system
 perform ddos attack with low ion cannon
-and also in another system use UDP and thread option and Ip and attack the defend system
+and also in another system in below attack option use UDP and thread option and Ip and slide the power barattack the defend system 
+and take another system and do the same to power up the attack
 
 in guardian you can block the ip from the option
+double click on the ip session on the screen
 ```
 </details>
 
