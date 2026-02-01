@@ -1283,6 +1283,7 @@ macof -i eth0 -d [Target IP Address]
 press any key in session and press h to get help cmd
 press F2 to go DHCP session
 x to get available attack option
+press 1 to DHCP starvation attack
 q to stop yersinia
 ```
 </details>
@@ -1305,13 +1306,17 @@ Click Display filter, select String from the drop-down options, click Narrow & W
 In the field next to String, type pwd and click the Find button.
 
 to sniff remotely in wireshark
-use remote desktop option and enable  Remote Packet Capture Protocol v.0 and close the remote window and come back to wireshark (attacker machine)
+use remote desktop option (application) and in control panel System and Security --> Windows Tools. In the Windows Tools control panel, double-click Services. enable  Remote Packet Capture Protocol v.0 and close the remote window and come back to wireshark (attacker machine)
 
 here navigate to capture option
 and click manage interface
 remote interface
 and + icon
-add the system
+add the system ip
+and port no as 2002
+Under the Authentication section, select the Password authentication radio button and enter the target machine's user credentials (here, Jason and qwerty);
+in client system
+
 ```
 </details>
 <details>
@@ -1357,9 +1362,10 @@ Click Analyze from the menu bar and select Expert Information
 ```console
 :~$setoolkit 
 to lounch SET
-navigate to site clone
+navigate to site clone (website)
 and clone the prefered site 
 and send it to victim by sending the host ip 
+in web address url http://ip
 ```
 </details>
 <details>
