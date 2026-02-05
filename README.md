@@ -1487,6 +1487,7 @@ Set HTTP Proxy to 10.10.1.11 and port to 8080, check the Also use this proxy for
 
 back to caido
 On the Requests tab, for all www.moviescope.com requests, modify www.moviescope.com to www.goodshopping.com in all the captured GET requests and Forward all the requests.
+also change in referrer down
 switch back to victim tab and do this until victim see different website
 ```
 </details>
@@ -1501,8 +1502,9 @@ in same system web browser
 http://localhost:8080
 and give a name '
 open proxy page from left 3 line
+and in victim machine go to system proxy
 and add the proxy of attacker ip and port 8080
-and vist the website and return to attacker machine you can see the passwor enterd in post packet under body
+and vist the website www.moviescope.com and return to attacker machine you can see the password enterd in post packet under body
 ```
 </details>
 
