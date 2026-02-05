@@ -1483,6 +1483,8 @@ and start
 Select File containing CA certificate(s) to import
 When prompted, click the Trust this CA to identify websites checkbox and click on OK
 On the Settings page, search for proxy and open
+Set HTTP Proxy to 10.10.1.11 and port to 8080, check the Also use this proxy for HTTPS box and click OK.
+
 back to caido
 On the Requests tab, for all www.moviescope.com requests, modify www.moviescope.com to www.goodshopping.com in all the captured GET requests and Forward all the requests.
 switch back to victim tab and do this until victim see different website
