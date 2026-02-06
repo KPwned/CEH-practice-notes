@@ -1545,7 +1545,7 @@ Copy so_rules and prepoc_rules and also rules folder and paste it into C:\Snort
 
 
 open snort in cmd by
-
+The Command Prompt window appears; type cd C:\Snort\bin
 snort
 and ctrl c
 then 
