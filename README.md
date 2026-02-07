@@ -1562,7 +1562,7 @@ open another cmd and ping google.com to seee that snort is working
 bonus > its in mail which is already configured
 ```
 >or to configuring manually 
-```console
+```console 
 :~$ step 1: 
 scroll down to the Step #1: Set the network variables section (Line 41) of the snort.conf file. In the HOME_NET line (Line 45), replace any with the IP addresses of the machine (target machine) on which Snort is running. Here, the target machine is Windows 11 and the IP address is 10.10.1.11.
 
