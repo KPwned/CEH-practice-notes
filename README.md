@@ -1822,14 +1822,14 @@ In the address bar of the browser, type http://10.10.1.9:8080 and press Enter.
 ```
 ```console
 :~$cd log4j-shell-poc/ 
-Now, we needed to install JDK 8, to do that open a new terminal window
+Now, we needed to extract JDK 8, to do that open a new terminal window
 tar -xf jdk-8u202-linux-x64.tar.gz  
 >-xf all files to extract
 and we have to move the file
 mv jdk1.8.0_202 /usr/bin/
 Now, we need to update the installed JDK path in the poc.py file.
 pluma poc.py 
-line 62, replace jdk1.8.0_20/bin/javac with /usr/bin/jdk1.8.0_202/bin/javac.
+line 62, replace jdk1.8.0_20/bin/javac with /usr/bin/jdk1.8.0_202/bin/java.
 line 87 and replace jdk1.8.0_20/bin/java with /usr/bin/jdk1.8.0_202/bin/java
 line 99 and replace jdk1.8.0_20/bin/java with /usr/bin/jdk1.8.0_202/bin/java.
 
