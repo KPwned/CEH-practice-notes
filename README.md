@@ -2536,3 +2536,26 @@ Copy the file from Desktop and paste it into Local Disk (I:).
  ```
  </details>
  
+# Usefull commands and tools 
+
+<details>
+<summary>To find Domain controller</summary>
+
+```console
+:~$ nmap -p 389, 636, 88, 3268 ip/24
+```
+</details>
+<details>
+
+<summary> message signing feature in smb </summary>
+```console
+:~$ nmap --script smb2-security-mode -p 445 172.30.10.200
+</details>
+
+<details>
+<summary>to filter login credential</summary>
+```console
+:~$ http.request.method == "GET" && http.host == "example.com"
+
+
+
