@@ -2584,7 +2584,7 @@ mssql://ip
 and then
 ```
 ```
-python3 mssqlclient.py username:password@ip
+python3 mssqlclient.py (domain name)username:password@ip (if any error add domain name)
 ```
 now we have to check for payload to insert  
 ```
@@ -2598,4 +2598,4 @@ set USERNAME SQL_srv
 set PASSWORD batman
 set DATABASE master
 Users/Public/Downloads
-```
+```                            
