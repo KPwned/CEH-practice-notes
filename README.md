@@ -2554,8 +2554,23 @@ Copy the file from Desktop and paste it into Local Disk (I:).
 
 <details>
 <summary>to filter login credential</summary>
+
 ```console
 :~$ http.request.method == "GET" && http.host == "example.com"
 
+```
+</details>
+<details>
+<summary>docker</summary>
 
-
+```console
+:~$ sudo apt install docker.io -y
+sudo systemctl start docker
+```
+</details>
+<details>
+<summary>name server lookup</summary>
+```console
+:~$ nslookup -type=ns domain_name
+```
+</details>
