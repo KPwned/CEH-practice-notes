@@ -2599,3 +2599,45 @@ set PASSWORD batman
 set DATABASE master
 Users/Public/Downloads
 ```                            
+</details>
+<details>
+
+<sumamry>to check intigrity hashes of file </summary>
+```console
+:~$ md5sum <file name>
+```
+</details>
+<details>
+
+<summary>crc value</summary>
+```console
+:~$ crc32 <file>
+certutil -hashfile <file> md5
+```
+</details>
+<details>
+<summary>cowrie attacker ip</summary>
+
+```console
+:~$ cat logfile |grep failed 
+```
+</details>
+<details>
+
+<summary>to check website technology</summary>
+
+```console
+:~$ nmap -sV --script=http-enum example.com
+```
+</details>
+<details>
+
+<summary>to download file from ssh</summary>
+
+```console
+:~$ first download python3 
+    winget install python.python3
+    python3 -m http.server 8080
+    in src wget http://ip port
+```
+</details>
