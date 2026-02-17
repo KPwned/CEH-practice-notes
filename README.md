@@ -2807,14 +2807,14 @@ check for CSP ie Content Security Policy (csp)
 :~$ use hydra n rdp://ip
 ```
 </details>
+
 <details>
-
-<summary>PID for the logfile<summary>
-
+<summary>PID for the logfile</summary>
 ```console
 :~$ download and install procmon and doble click on exe file to see parent PID (double)
 ```
 </details>
+
 <details>
 
 <summary>To find ELF entropy value</summary>
@@ -2853,7 +2853,6 @@ steghide extract -sf filename.jpg
 <details>
 
 <summary>smb security Message signing feature </sumamry>
-
 ```console
 :~$ nmap --script smb2-security-mode -p 445 <target-ip>
 ```
