@@ -2822,6 +2822,7 @@ check for CSP ie Content Security Policy (csp)
 
 ```console
 :~$ use cryptool > analysis > tools for analysis
+can also use DIE (detect it easy)
 ```
 </details>
 <details>
