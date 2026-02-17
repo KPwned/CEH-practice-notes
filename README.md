@@ -2799,3 +2799,62 @@ check for CSP ie Content Security Policy (csp)
 :~$ lbd <site>
 ```
 </details>
+<details>
+
+<summary>RDP bruteforce</summary>
+
+```console
+:~$ use hydra n rdp://ip
+```
+</details>
+<details>
+
+<summary>PID for the logfile<summary>
+
+```console
+:~$ download and install procmon and doble click on exe file to see parent PID (double)
+```
+</details>
+<details>
+
+<summary>To find ELF entropy value</summary>
+
+```console
+:~$ use cryptool > analysis > tools for analysis
+```
+</details>
+<details>
+
+<summary>RPCAP remote packet capture feature</summary>
+
+```console
+:~$ winpcap port 2002 scan using nmap
+```
+</details>
+<details>
+
+<summary>for encrypted image stegenography</summary>
+
+```console
+:~$ use steghide
+```
+```
+steghide extract -sf filename.jpg
+```
+</details>
+<details>
+
+<summary>vulnerability search</summary>
+
+```console
+:~$ use searchsploit
+```
+</details>
+<details>
+
+<summary>smb security Message signing feature </sumamry>
+
+```console
+:~$ nmap --script smb2-security-mode -p 445 <target-ip>
+```
+</details>
