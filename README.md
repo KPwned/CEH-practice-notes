@@ -2641,3 +2641,24 @@ certutil -hashfile <file> md5
     in src wget http://ip port
 ```
 </details>
+<details>
+
+<summary> to see txt file content in windows </summary>
+
+```console
+:~$ type <file name.txt>
+```
+</details>
+
+<details>
+<summary>FTP bruteforce</summary>
+
+```console
+:~$ search for vsftpd
+hydra .... ftp:// ip
+```
+and to download a file
+```
+get filename.txt /home/attacker/Desktop/filenametosave.txt
+```
+</details>
