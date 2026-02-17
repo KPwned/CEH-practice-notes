@@ -2852,7 +2852,7 @@ steghide extract -sf filename.jpg
 </details>
 <details>
 
-<summary>smb security Message signing feature </sumamry>
+<summary>smb security Message signing feature </summary>
 ```console
 :~$ nmap --script smb2-security-mode -p 445 <target-ip>
 ```
