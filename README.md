@@ -2600,9 +2600,10 @@ set DATABASE master
 Users/Public/Downloads
 ```                            
 </details>
+
 <details>
 
-<sumamry>to check intigrity hashes of file </summary>
+<summary>to check intigrity hashes of file </summary>
 ```console
 :~$ md5sum <file name>
 ```
@@ -2665,7 +2666,7 @@ for pdg change to "binary"
 </details>
 <details>
 
-<symmary>to find android device in subnet</summary>
+<summary>to find android device in subnet</summary>
 
 ```console
 :~$ nmap -p 5555 (ADB)
