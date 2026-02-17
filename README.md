@@ -2660,5 +2660,142 @@ hydra .... ftp:// ip
 and to download a file
 ```
 get filename.txt /home/attacker/Desktop/filenametosave.txt
+for pdg change to "binary"
+```
+</details>
+<details>
+
+<symmary>to find android device in subnet</summary>
+
+```console
+:~$ nmap -p 5555 (ADB)
+```
+</details>
+<details>
+
+<summary>clickjacking vuln find </summary>
+
+```console
+:~$ nikto -h www.abcd.com
+```
+
+ghosteye
+BillCipher
+Whatweb
+</details>
+<details>
+
+<summary>content management system </summary>
+
+```console
+:~$ wig www.abcd.com
+```
+</details>
+
+<details>
+
+<summary>brute force attack on site</summary>
+
+```console
+:~$ wpscan --url http://cehorg.com/wp-login.php -U <username.txt> -P <password.txt>
+```
+</details>
+
+<details>
+
+<summary>Perform parameter tampering on movies.cehorg.com </summary>
+
+```console
+:~$  username as "Jason" and password as "welcome"
+```
+</details>
+<details>
+
+<summary>for web crawling and for checking any vulnerability and checking contents</summary>
+
+```console
+:~$ use OWASP ZAP i.e "zaproxy"
+```
+</details>
+<details>
+
+<summary>for scan android apk files </summary>
+
+```console
+:~$ "https://sisik.eu/apk-tool"
+```
+</details>
+<details>
+
+<summary>smb login</summary>
+
+```console
+:~$ first check for share name
+```
+```
+smbclient -L //IP-address -U username
+```
+then
+```
+smbclient //192.168.0.15/Public -U administrator (user name)
+```
+```
+in user music folder
+```
+</details>
+<details>
+
+<summary>To find meta author </summary>
+```console
+:~$ can use whatweb 
+curl url | grep -i author
+```
+</details>
+<details>
+
+<summary>for checking vulnerability and cve</summary>
+
+```console
+:~$ openvas
+filter cve check old cve
+```
+</details>
+<details>
+
+<summary>to check missing policy in website</summary>
+```console
+:~$ zaproxy (owaspzap)
+check for CSP ie Content Security Policy (csp)
+```
+</details>
+<details>
+
+<summary>Nikto</summary>
+```console
+:~$ nikto -h <site>
+```
+</details>
+<details>
+
+<summary>sql injection</summary>
+
+```console
+:~$ www.moviescope.com (sam test)
+```
+</details>
+<details>
+
+<summary>WASC ID</summary>
+
+```console
+:~$ use zaproxy
+```
+</details>
+<details>
+
+<summary>to find load balancer</summary>
+
+```console
+:~$ lbd <site>
 ```
 </details>
