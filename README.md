@@ -498,9 +498,9 @@ ls -d [name server]
 ```
 </details>
 
-<details>DNS enumeration</details>
+<details>
 
-<summary>DNS enumeration </details>
+<summary>DNS enumeration </summary>
 
 ```console
 :~$ dnsenum www.certifiedhacker.com
