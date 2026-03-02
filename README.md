@@ -2941,7 +2941,7 @@ in powershell
 :~$ nmap -T4 -Ss -p 139,445 - -script vuln <IP/24> 
 
 ```
-</summary>
+</details>
 
 <details>
 
