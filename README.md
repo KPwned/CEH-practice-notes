@@ -3656,9 +3656,10 @@ cat output.txt
 
 
 ```
-```
 sender    >>>> ./covert_tcp -source <ip address of sender> -dest <ip address of receiver> -source_port <origin port number> -dest <reciever port number> -file <file name>
 
 receiver   >>>>> ./covert_tcp -source <ip address of sender> -source_port <sender destination port number> -server -file <file name>
+
+```
 
 </details>
