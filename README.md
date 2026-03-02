@@ -2941,7 +2941,7 @@ in powershell
 :~$ nmap -T4 -Ss -p 139,445 - -script vuln <IP/24> 
 
 ```
-</details>
+</summary>
 
 <details>
 
@@ -3519,7 +3519,7 @@ also can use cybercheff
 </details>
 
 <details>
-<summary>Tools for escalate privalage  (gives full details "enum")</summary>
+<summary>Tools for Privilage escalation  (gives full details "enum")</summary>
 
 ```console
 :~$ 1. rebootuser / LinEnum
@@ -3617,9 +3617,7 @@ id
 
 <details>
 
-<summary>Covert tcp</summary>
-
-```console
+<summary>covert tcp</summary>
 :~$ Step 1: Download Covert_TCP
 
 In Kali:
@@ -3655,5 +3653,5 @@ This sends file secretly inside TCP packets.
 On target:
 
 cat output.txt
-```
+
 </details>
